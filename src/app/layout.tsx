@@ -1,5 +1,6 @@
 import '@/assets/styles/global.scss'
-import Header from './post/header'
+import Footer from './footer'
+import Header from './header'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -15,6 +16,7 @@ export default async function RootLayout({
           <div className="desktop:w-4/6 max-w-5xl h-full desktop:px-6 px-3 mx-auto">
             <Header />
             {children}
+            <Footer />
           </div>
         </div>
       </body>

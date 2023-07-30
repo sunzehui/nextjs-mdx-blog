@@ -2,6 +2,7 @@ import { getList } from "@/app/feed/post"
 import Link from "next/link"
 import { TimeBar, Tag } from "@/components/ui"
 import { Metadata } from "next";
+import { EnterAnimation } from "@/components/common";
 
 export const metadata: Metadata = {
   title: '孙泽辉-文章',
@@ -55,8 +56,11 @@ export default async function Home() {
   return (
     <div className="w-full desktop:px-[20px] px-3 bg-white rounded-lg shadow border border-slate-300 flex flex-col">
       {
-        posts.map(post => {
-          return <Post key={post.id} {...post} />
+        posts.map((post, idx) => {
+          return (
+            <EnterAnimation key={post.id} delay={idx / 10}>
+              <Post  {...post} />
+            </EnterAnimation>)
         })
       }
     </div>

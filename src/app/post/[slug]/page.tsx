@@ -4,7 +4,7 @@ import iconRight from '@/assets/icons/right-arrow.svg'
 import { Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
 import Link from 'next/link';
-import { When, TagRenderer } from '@/components/common';
+import { When, TagRenderer, EnterAnimation } from '@/components/common';
 import { getAllPostsMeta, getPost, getPostName } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Suspense } from 'react';
@@ -35,6 +35,7 @@ const components = {
   del: TagRenderer('del'),
 }
 type Post = any
+
 interface PostNavProps {
   prevPost: Post | null
   nextPost: Post | null
@@ -87,6 +88,49 @@ const PostNav = ({ prevPost, nextPost }: PostNavProps) => {
   </nav >
 }
 
+const PostHeader = ({ post }: { post: Post }) => {
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="w-full text-zinc-800 text-2xl font-normal leading-relaxed">
+        {post.title}
+      </div>
+      <div className="self-stretch justify-start text-neutral-500 text-md font-light items-start inline-flex">
+        <div>
+          发布日期：{dateFormat(post.date)}
+        </div>
+
+        <div className="ml-5">{durationFormat(post.readingTime.time)}</div>
+        <div className="ml-5">{post.readingTime.words}字</div>
+      </div>
+    </div>
+  )
+}
+const PostContent = ({ content }: { content: any }) => {
+  return (
+    <div className="markdown-body w-full break-words whitespace-normal ">
+      <Suspense fallback={<>Loading...</>}>
+        {/* @ts-ignore */}
+        <MDXRemote source={content} options={{ parseFrontmatter: true, }} components={components} />
+      </Suspense>
+    </div>
+  )
+}
+const PostFooter = ({ post }: { post: Post }) => {
+  return (
+    <div className="w-full justify-between items-start inline-flex">
+      <div className="w-full h-10 py-[3px] justify-start items-center gap-3.5 flex">
+        {
+          post.tags.length <= 0 && <Tag val={'未归档'} />
+        }
+        {
+          post.tags.map((tag, idx) => {
+            return <Tag key={tag} val={tag} />
+          })
+        }
+      </div>
+    </div>
+  )
+}
 export default async function Post({
   params,
 }: {
@@ -95,42 +139,13 @@ export default async function Post({
   try {
     const postPayload = await getPost(params.slug)
     const post = postPayload.meta
-    return <>
-      <div className="desktop:p-6 p-3  w-full bg-white rounded-lg border border-slate-200 ">
-        <div className="flex flex-col gap-2">
-          <div className="w-full text-zinc-800 text-2xl font-normal leading-relaxed">
-            {post.title}
-          </div>
-          <div className="self-stretch justify-start text-neutral-400 text-md font-light items-start inline-flex">
-            <div>
-              发布日期：{dateFormat(post.date)}
-            </div>
-
-            <div className="ml-5">{durationFormat(post.readingTime.time)}</div>
-            <div className="ml-5">{post.readingTime.words}字</div>
-          </div>
-        </div>
-        <div className="markdown-body w-full break-words whitespace-normal ">
-          <Suspense fallback={<>Loading...</>}>
-            {/* @ts-ignore */}
-            <MDXRemote source={postPayload.content} options={{ parseFrontmatter: true, }} components={components} />
-          </Suspense>
-        </div>
-
-        <div className="w-full justify-between items-start inline-flex">
-          <div className="w-full h-10 py-[3px] justify-start items-center gap-3.5 flex">
-            {
-              post.tags.length <= 0 && <Tag val={'未归档'} />
-            }
-            {
-              post.tags.map((tag, idx) => {
-                return <Tag key={tag} val={tag} />
-              })
-            }
-          </div>
-        </div>
-      </div>
-    </>
+    return <div className="desktop:p-6 p-3  w-full bg-white rounded-lg border border-slate-200 ">
+      <EnterAnimation>
+        <PostHeader post={post} />
+        <PostContent content={postPayload.content} />
+        <PostFooter post={post} />
+      </EnterAnimation>
+    </div>
   } catch (e) {
     return notFound()
   }
