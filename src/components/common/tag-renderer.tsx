@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import classNames from 'classnames'
 
-const tagRenderer = (name: string) => {
+export const TagRenderer = (name: string) => {
   return (props => {
     const { children, className, ...rest } = props
     return React.createElement(
@@ -11,5 +11,3 @@ const tagRenderer = (name: string) => {
     )
   }) as React.FC<PropsWithChildren<HTMLElement>>
 }
-
-export default tagRenderer

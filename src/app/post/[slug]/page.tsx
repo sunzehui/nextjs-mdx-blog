@@ -1,41 +1,38 @@
-import '@/assets/md-el.scss'
+import '@/assets/styles/md-el.scss'
 import classnames from 'classnames'
 import iconRight from '@/assets/icons/right-arrow.svg'
-import { Tag } from '@/components/tag';
+import { Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
 import Link from 'next/link';
-import { When } from '@/components/when';
+import { When, TagRenderer } from '@/components/common';
 import { getAllPostsMeta, getPost, getPostName } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Suspense } from 'react';
-import classNames from 'classnames';
-import CodeBlock from '@/components/CodeBlock';
-import tagRenderer from '@/utils/tag-renderer';
-import Image from '@/components/Image'
+import { CodeBlock, Image } from '@/components/markdown';
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 const components = {
   img: Image,
   code: CodeBlock,
-  h1: tagRenderer('h1'),
-  h2: tagRenderer('h2'),
-  h3: tagRenderer('h3'),
-  h4: tagRenderer('h4'),
-  h5: tagRenderer('h5'),
-  h6: tagRenderer('h6'),
-  p: tagRenderer('p'),
-  a: tagRenderer('a'),
-  blockquote: tagRenderer('blockquote'),
-  table: tagRenderer('table'),
-  thead: tagRenderer('thead'),
-  tbody: tagRenderer('tbody'),
-  tr: tagRenderer('tr'),
-  th: tagRenderer('th'),
-  td: tagRenderer('td'),
-  em: tagRenderer('em'),
-  strong: tagRenderer('strong'),
-  del: tagRenderer('del'),
+  h1: TagRenderer('h1'),
+  h2: TagRenderer('h2'),
+  h3: TagRenderer('h3'),
+  h4: TagRenderer('h4'),
+  h5: TagRenderer('h5'),
+  h6: TagRenderer('h6'),
+  p: TagRenderer('p'),
+  a: TagRenderer('a'),
+  blockquote: TagRenderer('blockquote'),
+  table: TagRenderer('table'),
+  thead: TagRenderer('thead'),
+  tbody: TagRenderer('tbody'),
+  tr: TagRenderer('tr'),
+  th: TagRenderer('th'),
+  td: TagRenderer('td'),
+  em: TagRenderer('em'),
+  strong: TagRenderer('strong'),
+  del: TagRenderer('del'),
 }
 type Post = any
 interface PostNavProps {

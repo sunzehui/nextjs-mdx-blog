@@ -1,5 +1,5 @@
 
-export default function Image() {
+export function Image() {
   return (
     <img src={'/next.svg'} alt="" />
   )

@@ -1,4 +1,4 @@
-import '@/assets/globals.scss'
+import '@/assets/styles/global.scss'
 import Header from './post/header'
 
 interface RootLayoutProps {

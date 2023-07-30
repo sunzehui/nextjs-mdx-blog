@@ -1,9 +1,11 @@
 import { getList } from "@/app/feed/post"
-import { motion } from "framer-motion";
-import { Tag } from "@/components/tag"
 import Link from "next/link"
-import { TimeBar } from "@/components/timebar"
+import { TimeBar, Tag } from "@/components/ui"
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: '孙泽辉-文章',
+}
 
 interface PostProps {
   id: number | string

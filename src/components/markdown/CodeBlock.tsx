@@ -6,7 +6,7 @@ interface CodeBlockProps {
   className?: string
   children?: string
 }
-export default function CodeBlock(
+export function CodeBlock(
   props: any
 ) {
 
