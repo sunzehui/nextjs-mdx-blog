@@ -1,11 +1,9 @@
-'use server'
 import { getPostList } from "@app/data/post"
 import { motion } from "framer-motion";
-import { fromNow } from "@/utils/time"
 import { Tag } from "@/components/tag"
 import Link from "next/link"
 import { TimeBar } from "@/components/timebar"
-import { notFound } from "next/navigation"
+import { Transition } from "@/components/Transition";
 
 
 interface PostProps {
@@ -50,19 +48,18 @@ const Post = ({ ...props }: PostProps) => {
 }
 
 
+
 export default async function Home() {
   const posts = await getPostList()
 
   return (
-    <>
-      <div className="w-full desktop:px-[20px] px-3 bg-white rounded-lg shadow border border-slate-300 flex flex-col">
-        {
-          posts.map(post => {
-            return <Post key={post.id} {...post} />
-          })
-        }
-      </div>
-    </>
+    <div className="w-full desktop:px-[20px] px-3 bg-white rounded-lg shadow border border-slate-300 flex flex-col">
+      {
+        posts.map(post => {
+          return <Post key={post.id} {...post} />
+        })
+      }
+    </div>
   )
 }
 

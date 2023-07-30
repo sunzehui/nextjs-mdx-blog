@@ -1,10 +1,10 @@
+import '@/assets/globals.scss'
+
 interface RootLayoutProps {
   children: React.ReactNode
 }
-export const metadata = {
-  title: '孙泽辉',
-}
-export default function RootLayout({
+
+export default async function RootLayout({
   children
 }: RootLayoutProps) {
   return (
@@ -16,5 +16,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-
 }

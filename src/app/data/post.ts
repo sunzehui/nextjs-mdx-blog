@@ -1,3 +1,4 @@
+'use server'
 import { getAllPostsMeta } from '@/lib/mdx'
 
 export const getPostList = async () => {

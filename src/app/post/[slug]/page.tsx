@@ -118,7 +118,6 @@ export default async function Post({
             {/* @ts-ignore */}
             <MDXRemote source={postPayload.content} options={{ parseFrontmatter: true, }} components={components} />
           </Suspense>
-
         </div>
 
         <div className="w-full justify-between items-start inline-flex">
@@ -139,6 +138,7 @@ export default async function Post({
     return notFound()
   }
 }
+
 export async function generateMetadata(
   { params, searchParams }: any,
   parent: ResolvingMetadata
