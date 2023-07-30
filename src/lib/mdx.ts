@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import readingTime, { ReadTimeResults } from 'reading-time'
 import path from 'path'
 import crc32 from 'crc/crc32'
-const rootDirectory = path.join(process.cwd(), 'src', 'posts')
+const rootDirectory = path.join(process.cwd(), 'posts')
 
 interface PostDetail {
   content: any

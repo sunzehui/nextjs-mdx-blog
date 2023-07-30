@@ -1,9 +1,8 @@
-import { getPostList } from "@app/data/post"
+import { getList } from "@/app/feed/post"
 import { motion } from "framer-motion";
 import { Tag } from "@/components/tag"
 import Link from "next/link"
 import { TimeBar } from "@/components/timebar"
-import { Transition } from "@/components/Transition";
 
 
 interface PostProps {
@@ -48,9 +47,8 @@ const Post = ({ ...props }: PostProps) => {
 }
 
 
-
 export default async function Home() {
-  const posts = await getPostList()
+  const posts = await getList()
 
   return (
     <div className="w-full desktop:px-[20px] px-3 bg-white rounded-lg shadow border border-slate-300 flex flex-col">

@@ -8,14 +8,17 @@ export default function Header() {
           孙泽辉
         </Link>
       </div>
-      <div className="justify-start items-start gap-[20px] inline-flex">
+      <div className="justify-start items-start gap-[20px] inline-flex text-black text-sm font-normal leading-relaxed">
         <Link href={`/`}>
-          <div className="text-black text-sm font-normal leading-relaxed">首页</div>
+          首页
         </Link>
-        <div className="text-gray-700 text-sm font-normal leading-relaxed">归档</div>
-        <div className="text-gray-700 text-sm font-normal leading-relaxed">标签</div>
-        <div className="text-gray-700 text-sm font-normal leading-relaxed">友链</div>
-        <div className="text-gray-700 text-sm font-normal leading-relaxed">关于</div>
+        <Link href={`/post`}>
+          文章
+        </Link>
+        <div>归档</div>
+        <div>标签</div>
+        <div>友链</div>
+        <div>关于</div>
       </div>
     </div>
   </>
