@@ -1,8 +1,13 @@
 import { EnterAnimation } from "@/components/common"
 import { OutlineContainer } from "@/components/layout"
+import { Metadata } from "next"
 import Link from "next/link"
 import { getTags } from "../feed/post"
 
+export const metadata: Metadata = {
+  title: '标签-孙泽辉',
+  description: '标签'
+}
 export default async function Page() {
   const tags = await getTags()
 

@@ -47,3 +47,12 @@ export default async function Page({ params }: PageProps) {
     </>
   )
 }
+
+export const generateMetadata = async ({ params }: { params: { slug: tag } }) => {
+  const { slug: tag } = params
+
+  return {
+    title: `标签-${tag}-孙泽辉`,
+    description: `标签-${tag}`
+  }
+}

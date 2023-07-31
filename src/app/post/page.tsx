@@ -6,6 +6,7 @@ import { Post } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: '文章-孙泽辉',
+  description: 'szh'
 }
 
 export default async function Home() {
@@ -17,7 +18,7 @@ export default async function Home() {
         posts.map((post, idx) => {
           return (
             <EnterAnimation key={post.id} delay={idx / 10}>
-              <Post  {...post} />
+              <Post key={post.id} {...post} />
             </EnterAnimation>)
         })
       }

@@ -9,7 +9,7 @@ export interface PostProps {
   date: Date
 }
 export const Post = ({ ...props }: PostProps) => {
-  const { title, desc: content, tags, date: time, id } = props
+  const { title, desc: content, tags, date, id } = props
 
   return (
     <div className="py-3 desktop:py-[20px] flex flex-col gap-1">
@@ -24,7 +24,7 @@ export const Post = ({ ...props }: PostProps) => {
         {content}
       </div>
       <div className="flex">
-        <TimeBar time={time} />
+        <TimeBar time={date} />
         <div className="ml-2 items-center flex">
           {
             tags.length <= 0 && <Tag val={'未归档'} />

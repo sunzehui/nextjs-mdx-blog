@@ -136,19 +136,17 @@ export default async function Post({
 }: {
   params: { slug: string };
 }) {
-  try {
-    const postPayload = await getPost(params.slug)
-    const post = postPayload.meta
-    return <div className="desktop:p-6 p-3  w-full bg-white rounded-lg border border-slate-200 ">
-      <EnterAnimation>
-        <PostHeader post={post} />
-        <PostContent content={postPayload.content} />
-        <PostFooter post={post} />
-      </EnterAnimation>
-    </div>
-  } catch (e) {
-    return notFound()
-  }
+  const postPayload = await getPost(params.slug).catch(e => notFound())
+  const post = postPayload.meta
+
+  return <div className="desktop:p-6 p-3  w-full bg-white rounded-lg border border-slate-200 ">
+    <EnterAnimation>
+      <PostHeader post={post} />
+      <PostContent content={postPayload.content} />
+      <PostFooter post={post} />
+    </EnterAnimation>
+  </div>
+
 }
 
 export async function generateMetadata(
@@ -158,12 +156,11 @@ export async function generateMetadata(
   const id = params.slug
   try {
     const post = await getPost(id)
-    const parentMetadata = await parent
-    const pTitle = parentMetadata?.title
+
 
     return {
-      title: `${post.meta.title}-${pTitle?.absolute}`,
-      description: post.meta.desc,
+      title: `${post.meta.title}-孙泽辉`,
+      description: post.meta.desc || '',
     }
   } catch (e) {
     return {

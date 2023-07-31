@@ -9,6 +9,7 @@ import { getArchives } from "../feed/post"
 
 export const metadata: Metadata = {
   title: '归档-孙泽辉',
+  description: '归档'
 }
 
 interface RecordProps {
@@ -48,7 +49,7 @@ const Year: FC<YearProps> = ({ year, posts }) => {
       {
         posts.map(post => {
           return (
-            <Record key={post.slug} post={post} />
+            <Record key={post.id} post={post} />
           )
         })
       }
@@ -66,7 +67,7 @@ export default async function Page() {
           const posts = archives[year]
           return (
             <EnterAnimation key={year} delay={idx / 10}>
-              <Year key={year} year={year} posts={posts} />
+              <Year year={year} posts={posts} />
             </EnterAnimation>
           )
         })
