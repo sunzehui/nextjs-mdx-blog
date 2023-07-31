@@ -61,7 +61,7 @@ export default async function Page() {
   const archives = await getArchives()
   const years = Object.keys(archives).sort((a, b) => parseInt(b) - parseInt(a))
   return (
-    <OutlineContainer className={`gap-5 py-4`}>
+    <OutlineContainer className={`gap-5 `}>
       {
         years.map((year, idx) => {
           const posts = archives[year]

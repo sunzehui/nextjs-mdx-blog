@@ -1,6 +1,6 @@
 'use client'
-import { PrismTheme, Highlight, Language, themes } from 'prism-react-renderer'
-import classNames from 'classnames'
+import { Highlight, Language, themes } from 'prism-react-renderer'
+import { clsxm } from '@/utils/helper'
 
 interface CodeBlockProps {
   className?: string
@@ -36,7 +36,7 @@ export function CodeBlock(
                   key={i}
                   {...getLineProps({
                     line,
-                    className: classNames({
+                    className: clsxm({
                       // highlight: highlightLines.includes(i + 1),
                       // added: addedLines.includes(i + 1),
                       // removed: removedLines.includes(i + 1),

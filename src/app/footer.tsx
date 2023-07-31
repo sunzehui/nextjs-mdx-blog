@@ -1,5 +1,5 @@
 import { When } from "@/components/common"
-import classNames from "classnames"
+import { clsxm } from "@/utils/helper"
 import { FC } from "react"
 const config = {
   siteName: "孙泽辉",
@@ -15,7 +15,7 @@ interface RecordProps {
 }
 const Record: FC<RecordProps> = ({ className, k, v }) => {
   return (
-    <div className={classNames("Record flex justify-center items-center flex-wrap text-sm desktop:text-base", className)}>
+    <div className={clsxm("Record flex justify-center items-center flex-wrap text-sm desktop:text-base", className)}>
       <When condition={!!k}>
         <span className="text-neutral-500 font-normal flex-shrink-0">{k}</span>
       </When>

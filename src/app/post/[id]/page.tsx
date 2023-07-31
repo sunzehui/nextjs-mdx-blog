@@ -1,17 +1,15 @@
 import '@/assets/styles/md-el.scss'
-import classnames from 'classnames'
-import iconRight from '@/assets/icons/right-arrow.svg'
 import { Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
-import Link from 'next/link';
-import { When, TagRenderer, EnterAnimation } from '@/components/common';
-import { getAllPostsMeta, getPost, getPostName } from '@/lib/mdx';
+import { TagRenderer, EnterAnimation } from '@/components/common';
+import { getAllPostsMeta, getPost } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { FC, Suspense } from 'react';
 import { CodeBlock, Image } from '@/components/markdown';
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PostMeta } from '@/types/post';
+import { OutlineContainer } from '@/components/layout';
 
 const components = {
   img: Image,
@@ -122,7 +120,7 @@ const PostContent = ({ content }: { content: any }) => {
     </div>
   )
 }
-const PostFooter = ({ post }: { post: Post }) => {
+const PostFooter = ({ post }: { post: PostMeta }) => {
   return (
     <div className="w-full justify-between items-start inline-flex">
       <div className="w-full h-10 py-[3px] justify-start items-center gap-3.5 flex">
@@ -141,18 +139,20 @@ const PostFooter = ({ post }: { post: Post }) => {
 export default async function PagePostDetail({
   params,
 }: {
-  params: { slug: string };
+  params: { id: string };
 }) {
-  const postPayload = await getPost(params.slug).catch(e => notFound())
+  const postPayload = await getPost(params.id).catch(e => notFound())
   const post = postPayload.meta
 
-  return <div className="desktop:p-6 p-3  w-full bg-white rounded-lg border border-slate-200 ">
-    <EnterAnimation>
-      <PostHeader post={post} />
-      <PostContent content={postPayload.content} />
-      <PostFooter post={post} />
-    </EnterAnimation>
-  </div>
+  return (
+    <OutlineContainer>
+      <EnterAnimation>
+        <PostHeader post={post} />
+        <PostContent content={postPayload.content} />
+        <PostFooter post={post} />
+      </EnterAnimation>
+    </OutlineContainer>
+  )
 
 }
 
@@ -160,7 +160,7 @@ export async function generateMetadata(
   { params, searchParams }: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = params.slug
+  const id = params.id
   try {
     const post = await getPost(id)
 

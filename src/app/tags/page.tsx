@@ -12,7 +12,7 @@ export default async function Page() {
   const tags = await getTags()
 
   return (
-    <OutlineContainer className="py-4">
+    <OutlineContainer >
       <EnterAnimation>
 
         <div className="word-container">
