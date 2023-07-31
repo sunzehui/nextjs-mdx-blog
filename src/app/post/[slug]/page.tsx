@@ -7,10 +7,11 @@ import Link from 'next/link';
 import { When, TagRenderer, EnterAnimation } from '@/components/common';
 import { getAllPostsMeta, getPost, getPostName } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { CodeBlock, Image } from '@/components/markdown';
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
+import { PostMeta } from '@/types/post';
 
 const components = {
   img: Image,
@@ -34,11 +35,10 @@ const components = {
   strong: TagRenderer('strong'),
   del: TagRenderer('del'),
 }
-type Post = any
 
 interface PostNavProps {
-  prevPost: Post | null
-  nextPost: Post | null
+  prevPost: PostMeta | null
+  nextPost: PostMeta | null
 }
 
 export async function generateStaticParams() {
@@ -49,46 +49,48 @@ export async function generateStaticParams() {
 }
 
 
-const PostNav = ({ prevPost, nextPost }: PostNavProps) => {
-  const getNavItemClass = (post: Post) => classnames(
-    'cursor-pointer w-2/5 px-3 max-w-64 h-14 bg-white rounded-lg justify-end items-center gap-2.5 inline-flex',
-    post ? 'text-black' : 'text-gray-600',
-    post ? 'cursor-pointer' : 'cursor-not-allowed',
-  )
-  return <nav className='w-full mt-5 flex justify-between'>
-    <div
-      className={getNavItemClass(prevPost)}
-    >
-      <div className="w-5 h-5 relative ">
-        <img src={iconRight.src} className="w-full h-full" />
-      </div>
-      <div className="flex-1 text-black text-lg font-normal leading-relaxed">
-        <When condition={prevPost} other={'没有了'}>
-          <Link href={`/post/${prevPost?.id}`}>
-            {prevPost?.title}
-          </Link>
-        </When>
-      </div>
-    </div>
-    <div
-      className={getNavItemClass(nextPost)}
-    // className="w-2/5 px-3 max-w-64 h-14 bg-white rounded-lg justify-start items-center gap-2.5 inline-flex"
-    >
-      <div className="flex-1 text-right text-black text-lg font-normal leading-relaxed">
-        <When condition={nextPost} other={'没有了'}>
-          <Link href={`/post/${nextPost?.id}`}>
-            {nextPost?.title}
-          </Link>
-        </When>
-      </div>
-      <div className="w-5 h-5 relative rotate-180">
-        <img src={iconRight.src} className="w-full h-full" />
-      </div>
-    </div>
-  </nav >
+// const PostNav = ({ prevPost, nextPost }: PostNavProps) => {
+//   const getNavItemClass = (post: PostMeta) => classnames(
+//     'cursor-pointer w-2/5 px-3 max-w-64 h-14 bg-white rounded-lg justify-end items-center gap-2.5 inline-flex',
+//     post ? 'text-black' : 'text-gray-600',
+//     post ? 'cursor-pointer' : 'cursor-not-allowed',
+//   )
+//   return <nav className='w-full mt-5 flex justify-between'>
+//     <div
+//       className={getNavItemClass(prevPost)}
+//     >
+//       <div className="w-5 h-5 relative ">
+//         <img src={iconRight.src} className="w-full h-full" />
+//       </div>
+//       <div className="flex-1 text-black text-lg font-normal leading-relaxed">
+//         <When condition={prevPost} other={'没有了'}>
+//           <Link href={`/post/${prevPost?.id}`}>
+//             {prevPost?.title}
+//           </Link>
+//         </When>
+//       </div>
+//     </div>
+//     <div
+//       className={getNavItemClass(nextPost)}
+//     // className="w-2/5 px-3 max-w-64 h-14 bg-white rounded-lg justify-start items-center gap-2.5 inline-flex"
+//     >
+//       <div className="flex-1 text-right text-black text-lg font-normal leading-relaxed">
+//         <When condition={nextPost} other={'没有了'}>
+//           <Link href={`/post/${nextPost?.id}`}>
+//             {nextPost?.title}
+//           </Link>
+//         </When>
+//       </div>
+//       <div className="w-5 h-5 relative rotate-180">
+//         <img src={iconRight.src} className="w-full h-full" />
+//       </div>
+//     </div>
+//   </nav >
+// }
+interface PostHeaderProps {
+  post: PostMeta
 }
-
-const PostHeader = ({ post }: { post: Post }) => {
+const PostHeader: FC<PostHeaderProps> = ({ post }) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="w-full text-zinc-800 text-2xl font-normal leading-relaxed">
@@ -102,6 +104,11 @@ const PostHeader = ({ post }: { post: Post }) => {
         <div className="ml-5">{durationFormat(post.readingTime.time)}</div>
         <div className="ml-5">{post.readingTime.words}字</div>
       </div>
+
+      <p>
+        {post.desc}
+      </p>
+      <span className='h-px bg-slate-300'></span>
     </div>
   )
 }
@@ -131,7 +138,7 @@ const PostFooter = ({ post }: { post: Post }) => {
     </div>
   )
 }
-export default async function Post({
+export default async function PagePostDetail({
   params,
 }: {
   params: { slug: string };
@@ -156,7 +163,6 @@ export async function generateMetadata(
   const id = params.slug
   try {
     const post = await getPost(id)
-
 
     return {
       title: `${post.meta.title}-孙泽辉`,
