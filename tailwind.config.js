@@ -12,6 +12,9 @@ module.exports = {
       },
       screens: {
         'desktop': '1280px',
+      },
+      colors: {
+        'font-secondary': 'rgb(115 115 115)',
       }
     },
 

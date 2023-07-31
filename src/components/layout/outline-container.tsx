@@ -9,7 +9,7 @@ export const OutlineContainer: FC<OutlineContainerProps> = ({ children, classNam
   return (
     <div
       className={classNames(
-        "outline-container w-full shadow-inner desktop:px-[20px] px-3 bg-white rounded-lg  border border-slate-300 flex flex-col",
+        "outline-container w-full shadow-inner desktop:px-[20px] px-3 bg-white rounded-lg  border border-slate-300 ",
         className
       )}
     >

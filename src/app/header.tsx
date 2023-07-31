@@ -8,7 +8,7 @@ export default function Header() {
           孙泽辉
         </Link>
       </div>
-      <div className="justify-start items-start gap-[20px] inline-flex text-black text-sm font-normal leading-relaxed">
+      <div className="justify-start items-start gap-[20px] inline-flex text-sm font-normal leading-relaxed">
         <Link href={`/`}>
           首页
         </Link>
@@ -16,7 +16,7 @@ export default function Header() {
           文章
         </Link>
         <Link href="/archives">归档</Link>
-        <div>标签</div>
+        <Link href={'/tags'}>标签</Link>
         <div>友链</div>
         <div>关于</div>
       </div>

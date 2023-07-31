@@ -1,7 +1,11 @@
 'use client'
 import { fromNow } from "@/utils/time"
+import { FC } from "react"
 
-export const TimeBar = ({ time }: { time: string }) => {
+interface TagProps {
+  time: Date | string
+}
+export const TimeBar: FC<TagProps> = ({ time }) => {
   const timeNow = fromNow(time)
 
   return (

@@ -1,13 +1,15 @@
 'use client' // Error components must be Client Components
+import '@/assets/styles/global.scss'
 
-export default function notFound() {
+export default function NotFound() {
   return (
-    <>
+    <div className='p-3 flex items-center flex-col'>
       <div className="hit-the-floor text-slate-50 dark:text-neutral-400">
         404
       </div>
 
       <p>你来到了没有知识的荒原</p>
+
       <style global jsx>
         {`
           .hit-the-floor {
@@ -22,7 +24,8 @@ export default function notFound() {
           }
         `}
       </style>
-    </>
+
+    </div >
   )
 }
 

@@ -1,4 +1,3 @@
-
 import { EnterAnimation } from "@/components/common"
 import { OutlineContainer } from "@/components/layout"
 import { PostMeta } from "@/types/post"

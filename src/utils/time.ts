@@ -7,12 +7,16 @@ export function getTimeZone() {
   return timeZone;
 }
 
-export function fromNow(date: string) {
+export function fromNow(date: string | Date) {
+  let d = date
+  if (date instanceof String) {
+    d = new Date(date)
+  }
   const now = new Date();
-  if (isWithinInterval(new Date(date), { start: new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000), end: now })) {
+  if (isWithinInterval(d as Date, { start: new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000), end: now })) {
     return formatDistanceToNow(new Date(date), { addSuffix: true, locale: zhCN });
   } else {
-    return format(new Date(date), 'yyyy-MM-dd', {
+    return format(d as Date, 'yyyy-MM-dd', {
       locale: zhCN
     }); // 超过3天，显示原格式
   }
