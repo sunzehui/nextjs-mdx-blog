@@ -1,22 +1,10 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import readingTime, { ReadTimeResults } from 'reading-time'
+import readingTime from 'reading-time'
 import path from 'path'
 import crc32 from 'crc/crc32'
+import { PostDetail } from '@/types/post'
 const rootDirectory = path.join(process.cwd(), 'posts')
-
-interface PostDetail {
-  content: any
-  meta: {
-    title: string
-    date: string
-    desc: string
-    slug: string
-    id: string
-    tags: string[]
-    readingTime: ReadTimeResults
-  }
-}
 
 export const getPostBySlug = async (slug: string) => {
   const realSlug = slug.replace(/\.mdx$/, '')
@@ -27,7 +15,12 @@ export const getPostBySlug = async (slug: string) => {
 
   const id = crc32(realSlug).toString(16)
 
-  return { meta: { ...data, slug: realSlug, id, readingTime: readingTime(content) }, content: fileContent } as PostDetail
+  return {
+    meta: {
+      ...data, slug: realSlug, id, readingTime: readingTime(content)
+    },
+    content: fileContent
+  } as PostDetail
 }
 
 export const mapSlug = async (slug: string) => {

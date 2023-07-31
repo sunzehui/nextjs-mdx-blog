@@ -26,7 +26,7 @@ export function dateFormat(_date: string | Date) {
     date = parseISO(_date);
   }
 
-  return format(date as Date, 'yyyy-MM-dd HH:mm:ss', {
+  return format(date as Date, 'yyyy-MM-dd', {
     locale: zhCN
   });
 }
@@ -34,4 +34,11 @@ export function dateFormat(_date: string | Date) {
 export function durationFormat(time: number) {
   const d = millisecondsToMinutes(time);
   return d + '分钟';
+}
+
+export function time2timestamp(time: string | Date) {
+  if (time instanceof Date) {
+    return time.getTime();
+  }
+  return new Date(time).getTime();
 }

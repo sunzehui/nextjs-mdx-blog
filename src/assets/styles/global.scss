@@ -20,3 +20,11 @@ html,
 body {
   height: 100%;
 }
+
+.hover-underline {
+  @apply relative transition-all duration-300;
+  @apply after:transition-opacity after:duration-300;
+  @apply after:absolute after:opacity-0 after:inset-x-0 after:bottom-0 after:h-px after:bg-blue-500;
+  @apply hover:after:opacity-100;
+}
+

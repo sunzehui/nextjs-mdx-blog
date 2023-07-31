@@ -15,24 +15,27 @@ interface RecordProps {
 }
 const Record: FC<RecordProps> = ({ className, k, v }) => {
   return (
-    <div className={classNames("Record justify-center items-center inline-flex", className)}>
+    <div className={classNames("Record flex justify-center items-center flex-wrap text-sm desktop:text-base", className)}>
       <When condition={!!k}>
-        <div className="Copyright2023 text-neutral-500 text-base font-normal">{k}</div>
+        <span className="text-neutral-500 font-normal flex-shrink-0">{k}</span>
       </When>
-      <div className="Website ml-1 text-zinc-800 text-base font-blod">{v}</div>
+      <span className="ml-1 text-zinc-800 font-blod flex-shrink-0">{v}</span>
     </div>
   )
 }
 export default function Footer() {
   return (
     <div className="Footer mt-10 w-full justify-center items-center inline-flex">
-      <div className="Frame15 grow shrink basis-0 self-stretch px-3 justify-between items-start gap-36 inline-flex">
-        <div className="Left justify-start items-start gap-2.5 inline-flex">
+      <div className="Frame15 grow shrink basis-0 self-stretch px-3 flex flex-col items-center desktop:flex-row  desktop:justify-between">
+        <div className="Left flex  flex-wrap justify-center">
           <Record k="Copyright © 2023" v={config.siteName} />
+          <span className="mx-1" >·</span>
           <Record v={config.ICP} />
         </div>
-        <div className="Right justify-start items-start gap-3.5 flex">
+
+        <div className="Right flex  flex-wrap justify-center">
           <Record k={'Powered by'} v={config.system} />
+          <span className="mx-1" >·</span>
           <Record k={'Designed by'} v={config.designer} />
         </div>
       </div>

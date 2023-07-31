@@ -15,7 +15,7 @@ export default function Header() {
         <Link href={`/post`}>
           文章
         </Link>
-        <div>归档</div>
+        <Link href="/archives">归档</Link>
         <div>标签</div>
         <div>友链</div>
         <div>关于</div>

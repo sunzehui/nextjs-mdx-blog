@@ -3,9 +3,10 @@ import Link from "next/link"
 import { TimeBar, Tag } from "@/components/ui"
 import { Metadata } from "next";
 import { EnterAnimation } from "@/components/common";
+import { OutlineContainer } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: '孙泽辉-文章',
+  title: '文章-孙泽辉',
 }
 
 interface PostProps {
@@ -21,8 +22,10 @@ const Post = ({ ...props }: PostProps) => {
   return (
     <div className="py-3 desktop:py-[20px] flex flex-col gap-1">
       <Link href={`/post/${id}`}>
-        <div className="w-full cursor-pointer text-zinc-800 text-2xl font-normal leading-10">
-          {title}
+        <div className="cursor-pointer text-zinc-800 text-2xl font-normal leading-10 ">
+          <h2 className="inline-block hover-underline">
+            {title}
+          </h2>
         </div>
       </Link>
       <div className="w-full max-h-[90px] justify-start line-clamp-3 gap-2.5 text-zinc-800 text-md font-normal leading-[30px]">
@@ -54,7 +57,7 @@ export default async function Home() {
   const posts = await getList()
 
   return (
-    <div className="w-full desktop:px-[20px] px-3 bg-white rounded-lg shadow border border-slate-300 flex flex-col">
+    <OutlineContainer>
       {
         posts.map((post, idx) => {
           return (
@@ -63,7 +66,7 @@ export default async function Home() {
             </EnterAnimation>)
         })
       }
-    </div>
+    </OutlineContainer>
   )
 }
 
