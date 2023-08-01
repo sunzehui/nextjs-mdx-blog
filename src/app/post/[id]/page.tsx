@@ -1,38 +1,15 @@
-import '@/assets/styles/md-el.scss'
-import { Tag } from '@/components/ui';
+import { GapPoint, Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
-import { TagRenderer, EnterAnimation } from '@/components/common';
+import { EnterAnimation } from '@/components/common';
 import { getAllPostsMeta, getPost } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { FC, Suspense } from 'react';
-import { CodeBlock, Image } from '@/components/markdown';
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PostMeta } from '@/types/post';
 import { OutlineContainer } from '@/components/layout';
+import { components } from '@/lib/md-el';
 
-const components = {
-  img: Image,
-  code: CodeBlock,
-  h1: TagRenderer('h1'),
-  h2: TagRenderer('h2'),
-  h3: TagRenderer('h3'),
-  h4: TagRenderer('h4'),
-  h5: TagRenderer('h5'),
-  h6: TagRenderer('h6'),
-  p: TagRenderer('p'),
-  a: TagRenderer('a'),
-  blockquote: TagRenderer('blockquote'),
-  table: TagRenderer('table'),
-  thead: TagRenderer('thead'),
-  tbody: TagRenderer('tbody'),
-  tr: TagRenderer('tr'),
-  th: TagRenderer('th'),
-  td: TagRenderer('td'),
-  em: TagRenderer('em'),
-  strong: TagRenderer('strong'),
-  del: TagRenderer('del'),
-}
 
 interface PostNavProps {
   prevPost: PostMeta | null
@@ -94,13 +71,13 @@ const PostHeader: FC<PostHeaderProps> = ({ post }) => {
       <div className="w-full text-zinc-800 text-2xl font-normal leading-relaxed">
         {post.title}
       </div>
-      <div className="self-stretch justify-start text-neutral-500 text-md font-light items-start inline-flex">
-        <div>
-          发布日期：{dateFormat(post.date)}
-        </div>
+      <div className="text-neutral-500 text-md font-light ">
+        发布日期：{dateFormat(post.date)}
+        <GapPoint />
+        {durationFormat(post.readingTime.time)}
+        <GapPoint />
+        {post.readingTime.words}字
 
-        <div className="ml-5">{durationFormat(post.readingTime.time)}</div>
-        <div className="ml-5">{post.readingTime.words}字</div>
       </div>
 
       <p>
@@ -123,7 +100,7 @@ const PostContent = ({ content }: { content: any }) => {
 const PostFooter = ({ post }: { post: PostMeta }) => {
   return (
     <div className="w-full justify-between items-start inline-flex">
-      <div className="w-full h-10 py-[3px] justify-start items-center gap-3.5 flex">
+      <div className="w-full py-[3px] flex flex-wrap">
         {
           post.tags.length <= 0 && <Tag val={'未归档'} />
         }

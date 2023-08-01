@@ -1,4 +1,5 @@
 import { When } from "@/components/common"
+import { GapPoint } from "@/components/ui"
 import { clsxm } from "@/utils/helper"
 import { FC } from "react"
 const config = {
@@ -25,17 +26,17 @@ const Record: FC<RecordProps> = ({ className, k, v }) => {
 }
 export default function Footer() {
   return (
-    <div className="Footer mt-10 w-full justify-center items-center inline-flex">
+    <div className="Footer my-10  w-full justify-center items-center inline-flex">
       <div className="Frame15 grow shrink basis-0 self-stretch px-3 flex flex-col items-center desktop:flex-row  desktop:justify-between">
-        <div className="Left flex  flex-wrap justify-center">
+        <div className="Left flex flex-wrap justify-center">
           <Record k="Copyright © 2023" v={config.siteName} />
-          <span className="mx-1" >·</span>
+          <GapPoint />
           <Record v={config.ICP} />
         </div>
 
         <div className="Right flex  flex-wrap justify-center">
           <Record k={'Powered by'} v={config.system} />
-          <span className="mx-1" >·</span>
+          <GapPoint />
           <Record k={'Designed by'} v={config.designer} />
         </div>
       </div>

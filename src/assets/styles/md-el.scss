@@ -1,19 +1,57 @@
+/* @link https://utopia.fyi/type/calculator?c=320,14,1.125,700,18,1.125,5,0,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+  /* Step 0: 14.00px → 18.00px */
+  --step-0: clamp(0.88rem, calc(0.66rem + 1.05vw), 1.13rem);
+
+  /* Step 1: 15.75px → 20.25px */
+  --step-1: clamp(0.98rem, calc(0.75rem + 1.18vw), 1.27rem);
+
+  /* Step 2: 17.72px → 22.78px */
+  --step-2: clamp(1.11rem, calc(0.84rem + 1.33vw), 1.42rem);
+
+  /* Step 3: 19.93px → 25.63px */
+  --step-3: clamp(1.25rem, calc(0.95rem + 1.50vw), 1.60rem);
+
+  /* Step 4: 22.43px → 28.83px */
+  --step-4: clamp(1.40rem, calc(1.07rem + 1.68vw), 1.80rem);
+
+  /* Step 5: 25.23px → 32.44px */
+  --step-5: clamp(1.58rem, calc(1.20rem + 1.90vw), 2.03rem);
+}
 .markdown-body {
-  @apply text-base break-words;
-  line-height: 1.75;
+  @apply text-base break-words leading-8;
 
   // Heading
   .anchor {
     @apply text-zinc-900 no-underline;
     &:hover::after { @apply text-gray-500/50 font-normal; content: ' #'; }
   }
-  .mdx-h1, .mdx-h2, .mdx-h3, .mdx-h4, .mdx-h5, .mdx-h6 { @apply font-bold my-4; }
-  .mdx-h1 { @apply text-4xl }
-  .mdx-h2 { @apply text-2xl; }
-  .mdx-h3 { @apply text-xl; }
-  .mdx-h4 { @apply text-lg; }
-  .mdx-h5 { @apply text-sm; }
-  .mdx-h6 { @apply text-xs; }
+  .mdx-h1, .mdx-h2, .mdx-h3, .mdx-h4, .mdx-h5, .mdx-h6 { @apply font-bold my-4 leading-9; }
+  .mdx-h1 { 
+    // @apply text-4xl;
+    font-size: var(--step-5)
+  }
+  .mdx-h2 { 
+    // @apply text-2xl;
+    font-size: var(--step-4)
+   }
+  .mdx-h3 { 
+    // @apply text-xl;
+    font-size: var(--step-3)
+  }
+  .mdx-h4 {
+    //  @apply text-lg;
+    font-size: var(--step-2)
+    }
+  .mdx-h5 { 
+    // @apply text-sm;
+    font-size: var(--step-1)
+   }
+  .mdx-h6 {
+    //  @apply text-xs;
+    font-size: var(--step-0)
+    }
   .mdx-h1 + *, .mdx-h2 + *, .mdx-h3 + *, .mdx-h4 + *, .mdx-h5 + *, .mdx-h6 + * { @apply mt-0; }
 
   // Paragraph
@@ -26,12 +64,16 @@
     &::after { @apply absolute -top-6 right-0 w-10 h-10 bg-contain bg-bottom bg-no-repeat; content: ''; background-image: url("/quote-r.svg"); }
   }
 
+  .code-block {
+    @apply leading-normal;
+  }
+
   // Emphasis
   .mdx-em { @apply opacity-80; }
 
   // InlineCode
   .mdx-code {
-    @apply bg-orange-100/20 bg-red-100 rounded-md text-[1.1em] px-1 mx-2; 
+    @apply bg-orange-100/20 bg-red-100 rounded-sm text-[1.1em] px-1 mx-2; 
   }
   // Admonition
   .admonition {
@@ -76,11 +118,17 @@
     @apply my-6 pl-4;
     .mdx-p { @apply m-0 }
   }
+  .mdx-ul{
+    // list-style: disc;
+    > .mdx-li {
+      &::before { @apply mr-2 text-primary font-medium; content: '•'; }
+    }
+  }
   .mdx-ol {
     // counter-reset: list-item 1;
     > .mdx-li {
       counter-increment: list-item;
-      &::before {
+      &::marker {
         @apply mr-2 text-primary font-medium;
         content: counter(list-item) ". ";
         min-width: 20px;

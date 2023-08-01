@@ -27,13 +27,7 @@ export const getList = async ({ tag }: GetListParams = {}) => {
 
 export const getArchives = async () => {
   const metas = await getAllPostsMeta()
-  const archives = metas.map((meta) => {
-    return {
-      ...meta,
-      timestamp: time2timestamp(meta.date)
-    }
-  })
-    .sort((a, b) => b.timestamp - a.timestamp)
+  const archives = metas
     .reduce((acc, cur) => {
       const year = cur.date.getFullYear()
       if (!acc[year]) {
@@ -65,3 +59,4 @@ export const getTags = async () => {
   })
   return tagsList
 }
+

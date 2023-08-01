@@ -15,11 +15,14 @@ module.exports = {
       },
       colors: {
         'font-secondary': 'rgb(115 115 115)',
+        'scrollbar': '##718093',
+        'scrollbar-thumb': '#7f8fa6',
       }
     },
 
   },
   plugins: [
-    require("daisyui")
+    require("daisyui"),
+
   ],
 }

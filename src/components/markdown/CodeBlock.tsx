@@ -9,7 +9,6 @@ interface CodeBlockProps {
 export function CodeBlock(
   props: any
 ) {
-
   const { className, children } = props as CodeBlockProps
   if (!children) return null
 
@@ -46,13 +45,9 @@ export function CodeBlock(
                     }),
                   })}
                 >
-                  <span className='px-2 text-gray-600 ' style={
-                    {
-                      minWidth: '2.5em',
-                      display: 'inline-block',
-                      userSelect: 'none',
-                    }
-                  }>{i + 1}</span>
+                  <span
+                    className='pr-2 mr-2 min-w-[2em] text-right text-gray-600  inline-block select-none border-r border-gray-300'
+                  >{i + 1}</span>
                   {line.map((token: any, key: any) => (
                     <span key={key} {...getTokenProps({ token })} />
                   ))}
