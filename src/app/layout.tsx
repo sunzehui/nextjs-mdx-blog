@@ -35,12 +35,10 @@ export default async function RootLayout({
         <SayHi />
       </head>
       <body className="scroll-smooth antialiased bg-orange-50/20 " >
-        <div className="h-full overflow-scroll">
-          <div className="desktop:w-4/6 max-w-5xl h-full desktop:px-6 px-3 mx-auto">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+        <div className="desktop:w-4/6 max-w-5xl h-full desktop:px-6 px-3 mx-auto">
+          <Header />
+          {children}
+          <Footer />
         </div>
       </body>
     </html>

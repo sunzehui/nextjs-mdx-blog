@@ -1,21 +1,22 @@
 'use client'
-
-import clsx from "clsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { When } from "../common"
-// import { } from "react-icons/fa";
+import { scroller } from 'react-scroll'
+import { smoothScroll } from '@/utils/helper'
 enum LinkType {
   Relative,
   InSite,
   OutSite,
   Github,
+  Hash
 }
 function checkLinkType(href: string): LinkType {
   if (href.startsWith('/')) return LinkType.Relative
+  if (href.startsWith('#')) return LinkType.Hash
 
   const locateUrl = new URL(location.href)
   const toUrlParser = new URL(href)
@@ -35,12 +36,13 @@ export const Link = ({ href, children, ...props }: any) => {
 
   useEffect(() => {
     setLinkType(checkLinkType(href))
-    console.log('linkType', linkType, href);
-
   }, [])
 
   const handleUrlRedirect = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
+    if (linkType === LinkType.Hash) {
+      return smoothScroll(href)
+    }
 
     if (linkType === LinkType.Relative) return router.push(href)
 
@@ -65,7 +67,6 @@ export const Link = ({ href, children, ...props }: any) => {
         </When>
         {children}
       </a>
-
     </>
   )
 }
