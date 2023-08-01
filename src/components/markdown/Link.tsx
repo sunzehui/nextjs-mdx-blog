@@ -58,10 +58,9 @@ export const Link = ({ href, children, ...props }: any) => {
         className={'border-b border-blue-400 pb-1 hover:bg-blue-200 hover:border-none hover:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] hover:rounded-md transition-all duration-300'}>
 
         <When condition={linkType === LinkType.Github}>
-
           <FontAwesomeIcon icon={faGithub} style={{ color: '#808091', }} className={'mr-1'} />
         </When>
-        <When condition={linkType === LinkType.OutSite}>
+        <When condition={linkType !== LinkType.Github}>
           <FontAwesomeIcon icon={faLink} style={{ color: '#808091', }} className={'mr-1'} />
         </When>
         {children}

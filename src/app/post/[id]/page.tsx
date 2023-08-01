@@ -102,10 +102,10 @@ const PostFooter = ({ post }: { post: PostMeta }) => {
     <div className="w-full justify-between items-start inline-flex">
       <div className="w-full py-[3px] flex flex-wrap">
         {
-          post.tags.length <= 0 && <Tag val={'未归档'} />
+          !post.tags && <Tag val={'未归档'} />
         }
         {
-          post.tags.map((tag, idx) => {
+          post.tags && post.tags.map((tag, idx) => {
             return <Tag key={tag} val={tag} />
           })
         }
@@ -118,7 +118,10 @@ export default async function PagePostDetail({
 }: {
   params: { id: string };
 }) {
-  const postPayload = await getPost(params.id).catch(e => notFound())
+  // @TODO: 适配旧版blog，待删除
+  const id = params.id.endsWith('.html') ? params.id.slice(0, -5) : params.id
+
+  const postPayload = await getPost(id).catch(e => notFound())
   const post = postPayload.meta
 
   return (
@@ -137,7 +140,8 @@ export async function generateMetadata(
   { params, searchParams }: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = params.id
+  // @TODO: 适配旧版blog，待删除
+  const id = params.id.endsWith('.html') ? params.id.slice(0, -5) : params.id
   try {
     const post = await getPost(id)
 

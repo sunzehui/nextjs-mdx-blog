@@ -23,7 +23,7 @@ export function CodeBlock(
 
   return (
     <div className='code-block relative '>
-      <div className="absolute right-2 top-0 px-3  rounded-tl-md rounded-tr-md bg-slate-100 text-slate-300 dark:bg-[#282a36] dark:text-slate-400 font-mono font-medium text-xl leading-none select-none">
+      <div className="absolute right-2 top-0 px-3  rounded-tl-md rounded-tr-md  text-slate-300  dark:text-slate-400 font-mono font-medium text-2xl leading-none select-none">
         {language?.toUpperCase()}
       </div>
       <Highlight code={code} theme={themes.github} language={language || 'bash'}>

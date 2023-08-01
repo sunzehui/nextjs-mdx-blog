@@ -64,6 +64,7 @@ export const getPostsIdMap = async () => {
 
   return idMap as Record<string, string>
 }
+
 export const getAllPostsMeta = async () => {
   const files = fs.readdirSync(rootDirectory)
 
@@ -71,12 +72,13 @@ export const getAllPostsMeta = async () => {
     const { meta } = await getPostBySlug(filename)
     return meta
   }))
-  const sortedMetas = metas.map((meta) => ({
+  metas = metas.map((meta) => ({
     ...meta,
     timestamp: time2timestamp(meta.date)
   }))
     .sort((a, b) => b.timestamp - a.timestamp)
-  return sortedMetas
+
+  return metas
 }
 
 export const getPostName = async (id: string) => {

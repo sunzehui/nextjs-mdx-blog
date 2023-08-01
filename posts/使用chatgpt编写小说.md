@@ -4,12 +4,11 @@ tags:
   - chatgpt
 abbrlink: c63cf213
 date: 2023-06-26 06:42:05
-desc: 自己喂提示词给chatgpt，总是感觉效果不理想，没有逻辑，今天看到一个项目，可以使用chatgpt编写小说，效果还不错，可以参考一下。
 ---
+自己喂提示词给chatgpt，总是感觉效果不理想，没有逻辑，今天看到一个项目，可以使用chatgpt编写小说，效果还不错，可以参考一下。
 
 ## 项目地址
 https://github.com/mshumer/gpt-author
-
 ## 使用方法
 由于作者提供的代码是直接使用gpt4.0的，没有适配gpt3.5，所以在issue里有人提供了适配gpt3.5的代码，另外添加了多语言翻译。
 issue: https://github.com/mshumer/gpt-author/issues/1#issuecomment-1602105017

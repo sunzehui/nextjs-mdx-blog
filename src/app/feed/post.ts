@@ -1,16 +1,19 @@
 'use server'
 import { getAllPostsMeta } from '@/lib/mdx'
 import { PostMeta } from '@/types/post'
-import { time2timestamp } from '@/utils/time'
 
 
 const getListByTag = async (tag: string) => {
   const metas = await getAllPostsMeta()
-  return metas.filter((meta) => meta.tags.includes(tag))
+  return metas
+    .filter(meta => meta.tags)
+    .filter((meta) => meta.tags.includes(tag))
 }
 
 interface GetListParams {
   tag?: string
+  page?: number
+  size?: number
 }
 export const getList = async ({ tag }: GetListParams = {}) => {
   if (tag) {
@@ -20,10 +23,32 @@ export const getList = async ({ tag }: GetListParams = {}) => {
     }
     return postList
   }
+
   return await getAllPostsMeta()
 }
-
-
+interface QueryPostsResult {
+  posts: PostMeta[]
+  postCount: number
+  pageCount: number
+}
+export const getListWithPagination = async ({ page, size }: GetListParams = {}) => {
+  const allPosts = await getList()
+  let posts = allPosts
+  if (page && size) {
+    const start = (page - 1) * size
+    const end = start + size
+    posts = posts.slice(start, end)
+  }
+  const result: QueryPostsResult = {
+    posts,
+    postCount: posts.length,
+    pageCount: 1
+  }
+  if (page && size) {
+    result.pageCount = Math.ceil(allPosts.length / size)
+  }
+  return result
+}
 
 export const getArchives = async () => {
   const metas = await getAllPostsMeta()

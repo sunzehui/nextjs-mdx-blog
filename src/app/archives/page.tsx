@@ -45,11 +45,15 @@ interface YearProps {
 const Year: FC<YearProps> = ({ year, posts }) => {
   return (
     <div className="Year self-stretch  flex-col justify-start items-start gap-2.5 flex">
-      <Title year={year} num={posts.length} />
+      <EnterAnimation >
+        <Title year={year} num={posts.length} />
+      </EnterAnimation>
       {
-        posts.map(post => {
+        posts.map((post, idx) => {
           return (
-            <Record key={post.id} post={post} />
+            <EnterAnimation key={post.id} delay={Math.min(2, 0.1 + idx / 10)}>
+              <Record key={post.id} post={post} />
+            </EnterAnimation>
           )
         })
       }
@@ -61,14 +65,12 @@ export default async function Page() {
   const archives = await getArchives()
   const years = Object.keys(archives).sort((a, b) => parseInt(b) - parseInt(a))
   return (
-    <OutlineContainer className={`gap-5 `}>
+    <OutlineContainer className={`flex flex-col gap-10`}>
       {
-        years.map((year, idx) => {
+        years.map((year) => {
           const posts = archives[year]
           return (
-            <EnterAnimation key={year} delay={idx / 10}>
-              <Year year={year} posts={posts} />
-            </EnterAnimation>
+            <Year key={year} year={year} posts={posts} />
           )
         })
       }

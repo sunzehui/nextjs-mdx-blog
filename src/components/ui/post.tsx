@@ -25,17 +25,18 @@ export const Post = ({ ...props }: PostProps) => {
       </div>
       <div className="flex flex-wrap">
         <TimeBar time={date} />
+
         {
-          tags.length <= 0 && <Tag val={'未归档'} />
+          !tags && <Tag val={'未归档'} />
         }
         {
-          tags.map((tag, idx) => {
+          tags && tags.map((tag, idx) => {
             if (idx > 3) return null;
             return <Tag key={tag} val={tag} />
           })
         }
         {
-          tags.length > 3 && <Tag isMore />
+          tags && tags.length && tags.length > 3 && <Tag isMore />
         }
       </div>
     </div>
