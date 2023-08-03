@@ -5,7 +5,6 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { When } from "../common"
-import { scroller } from 'react-scroll'
 import { smoothScroll } from '@/utils/helper'
 enum LinkType {
   Relative,

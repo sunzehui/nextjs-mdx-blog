@@ -1,7 +1,9 @@
+
 import { GapPoint, Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
+import remarkMath from 'remark-math'
 import { EnterAnimation } from '@/components/common';
-import { getAllPostsMeta, getPost } from '@/lib/mdx';
+import { getAllPostsMeta, getPost, Markdown } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { FC, Suspense } from 'react';
 import { Metadata, ResolvingMetadata } from 'next'
@@ -9,7 +11,8 @@ import { notFound } from 'next/navigation'
 import { PostMeta } from '@/types/post';
 import { OutlineContainer } from '@/components/layout';
 import { components } from '@/lib/md-el';
-
+import rehypeMathjax from 'rehype-mathjax'
+import Head from "next/head";
 
 interface PostNavProps {
   prevPost: PostMeta | null
@@ -87,12 +90,15 @@ const PostHeader: FC<PostHeaderProps> = ({ post }) => {
     </div>
   )
 }
-const PostContent = ({ content }: { content: any }) => {
+interface PostContentProps {
+  content: string
+}
+const PostContent = ({ content }: PostContentProps) => {
   return (
     <div className="markdown-body w-full break-words whitespace-normal ">
       <Suspense fallback={<>Loading...</>}>
         {/* @ts-ignore */}
-        <MDXRemote source={content} options={{ parseFrontmatter: true, }} components={components} />
+        <MDXRemote source={content} options={{ parseFrontmatter: true, mdxOptions: { rehypePlugins: [rehypeMathjax], remarkPlugins: [remarkMath] } }} components={components} />
       </Suspense>
     </div>
   )
@@ -125,13 +131,16 @@ export default async function PagePostDetail({
   const post = postPayload.meta
 
   return (
-    <OutlineContainer>
-      <EnterAnimation>
-        <PostHeader post={post} />
-        <PostContent content={postPayload.content} />
-        <PostFooter post={post} />
-      </EnterAnimation>
-    </OutlineContainer>
+    <>
+      <OutlineContainer>
+        <EnterAnimation>
+          <PostHeader post={post} />
+          <PostContent content={postPayload.content} />
+          <PostFooter post={post} />
+        </EnterAnimation>
+      </OutlineContainer>
+    </>
+
   )
 
 }

@@ -4,9 +4,10 @@ tags:
   - JavaScript
 abbrlink: b8949dbc
 date: 2022-06-28 07:35:54
+desc: vben-admin 的源码很值得学习！
+
 ---
 
-vben-admin 的源码很值得学习！
 
 
 

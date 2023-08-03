@@ -4,9 +4,10 @@ tags:
   - coding
 abbrlink: 7fd036cc
 date: 2022-07-04 13:16:49
+desc: 今天做题遇到题目用到了`data.task`这个包，里面的`Task`实现很巧妙，类似`Promise`但又不是，简单对比分析一下。
 ---
 
-今天做题遇到题目用到了`data.task`这个包，里面的`Task`实现很巧妙，类似`Promise`但又不是，简单对比分析一下。
+
 
 
 

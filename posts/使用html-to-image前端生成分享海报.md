@@ -4,9 +4,10 @@ tags:
   - web
 abbrlink: 3c284085
 date: 2022-09-09 15:07:04
+desc: 今天完善一下浮墨笔记，实现分享memo功能，需要创建海报图片，用html-to-image完美解决问题。
+
 ---
 
-今天完善一下浮墨笔记，实现分享memo功能，需要创建海报图片，用html-to-image完美解决问题。
 
 
 

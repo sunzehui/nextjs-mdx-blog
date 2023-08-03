@@ -4,9 +4,10 @@ tags:
   - docker
 abbrlink: 9300d1ee
 date: 2022-08-30 07:52:50
+desc: 最近忙完了在线考试系统的程序编写+论文，准备部署上线，为了方便选用docker，为了更方便，把mysql, redis也统统装到docker，哈哈哈哈
 ---
 
-最近忙完了在线考试系统的程序编写+论文，准备部署上线，为了方便选用docker，为了更方便，把mysql, redis也统统装到docker，哈哈哈哈
+
 
 
 

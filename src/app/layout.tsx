@@ -30,9 +30,10 @@ export default async function RootLayout({
   children
 }: RootLayoutProps) {
   return (
-    <html lang="zh-Hans" className='noise'>
+    <html lang="zh-Hans" className='noise' >
       <head>
         <SayHi />
+
       </head>
       <body className="scroll-smooth antialiased bg-orange-50/20 " >
         <div className="desktop:w-4/6 max-w-5xl h-full desktop:px-6 px-3 mx-auto">

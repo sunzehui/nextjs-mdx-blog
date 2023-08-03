@@ -4,9 +4,10 @@ tags:
   - shell
 abbrlink: 75eaa1ad
 date: 2022-06-14 11:09:34
+desc: 美化Powershell，为其添加命令别名。
+
 ---
 
-美化Powershell，为其添加命令别名。
 
 
 

@@ -4,9 +4,10 @@ tags:
   - nestjs
 abbrlink: b7a9926e
 date: 2022-05-21 20:07:38
+desc: 研究了一天，该踩的坑一个不少，Typeorm用起来不太顺手。
+
 ---
 
-研究了一天，该踩的坑一个不少，Typeorm用起来不太顺手。
 
 
 

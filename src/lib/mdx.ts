@@ -5,6 +5,10 @@ import path from 'path'
 import crc32 from 'crc/crc32'
 import { PostDetail } from '@/types/post'
 import { time2timestamp } from '@/utils/time'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import remarkMath from 'remark-math'
+import rehypeMathjax from 'rehype-mathjax'
+import { components } from './md-el'
 const rootDirectory = path.join(process.cwd(), 'posts')
 
 const isSupportPost = (slug: string) => {
@@ -92,3 +96,19 @@ export const getPost = async (id: string) => {
   return post
 }
 
+
+export const Markdown = async ({ source }: any) => {
+  const { content } = await compileMDX({
+    source,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkMath],
+        // rehypePlugins: [rehypeMathjax]
+      }
+    },
+    // @ts-ignore
+    components
+  })
+  return content
+}

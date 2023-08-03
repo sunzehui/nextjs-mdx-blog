@@ -4,9 +4,10 @@ tags:
   - web
 abbrlink: d11c887d
 date: 2022-09-14 07:54:55
+desc: 最近写浮墨笔记要同步光标位置，奈何focus时获取selectionStart总为0，找到两种解决办法。
+
 ---
 
-最近写浮墨笔记要同步光标位置，奈何focus时获取selectionStart总为0，找到两种解决办法。
 
 
 

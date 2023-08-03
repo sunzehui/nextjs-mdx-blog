@@ -3,8 +3,9 @@ title: 使用nextjs编写个人博客
 date: 2023-07-24 07:06:32
 tags:
 - coding
+desc: MDX是一种将Markdown和JSX结合的语法，可以在Markdown中使用JSX，一直想独立编写一个博客平台，这次就用nextjs+MDX来写一个博客平台吧。
 ---
-MDX是一种将Markdown和JSX结合的语法，可以在Markdown中使用JSX，一直想独立编写一个博客平台，这次就用nextjs+MDX来写一个博客平台吧。
+
 
 
 ## 使用Next.js开发博客平台的主要步骤

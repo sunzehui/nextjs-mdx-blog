@@ -4,9 +4,10 @@ tags:
   - vue
 abbrlink: 33583c40
 date: 2022-10-12 06:51:14
+desc: 最近写项目用到了vue2，以为要开始痛苦的optionAPI编程，没想到vue2竟然支持compositionAPI了，甚至能在setup里写代码！
 ---
 
-最近写项目用到了vue2，以为要开始痛苦的optionAPI编程，没想到vue2竟然支持compositionAPI了，甚至能在setup里写代码！
+
 
 
 

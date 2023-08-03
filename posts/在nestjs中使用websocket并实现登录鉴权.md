@@ -4,9 +4,10 @@ tags:
   - nestjs
 abbrlink: d0e90396
 date: 2022-07-19 11:08:27
+desc: 考试系统需要记录用户作答时间等等，选择使用websocket，并验证用户token。
+
 ---
 
-考试系统需要记录用户作答时间等等，选择使用websocket，并验证用户token。
 
 
 

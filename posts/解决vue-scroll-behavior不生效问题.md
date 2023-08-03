@@ -4,9 +4,10 @@ tags:
   - coding
 abbrlink: b0379d51
 date: 2023-04-28 16:44:54
+desc: 之前研究过vue-scroll-behavior源码，操作也都清楚，奈何配置好了，切换页面后无效，也不滚动到指定位置。。
 ---
 
-之前研究过vue-scroll-behavior源码，操作也都清楚，奈何配置好了，切换页面后无效，也不滚动到指定位置。。
+
 
 
 
