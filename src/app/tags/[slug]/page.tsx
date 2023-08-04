@@ -56,3 +56,21 @@ export const generateMetadata = async ({ params }: { params: { slug: tag } }) =>
     description: `标签-${tag}`
   }
 }
+
+// export const generateStaticParams = async () => {
+//   const tags = await getList({}).then(posts => {
+//     const tags = new Set<string>()
+//     posts.forEach(post => {
+//       post.tags.forEach(tag => {
+//         tags.add(tag)
+//       })
+//     })
+//     return Array.from(tags)
+//   })
+
+//   return tags.map(tag => {
+//     return {
+//       slug: tag
+//     }
+//   })
+// }

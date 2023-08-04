@@ -19,12 +19,7 @@ interface PostNavProps {
   nextPost: PostMeta | null
 }
 
-export async function generateStaticParams() {
-  const metas = await getAllPostsMeta()
-  return metas.map(meta => {
-    return { slug: meta.id }
-  })
-}
+
 
 
 // const PostNav = ({ prevPost, nextPost }: PostNavProps) => {
@@ -119,6 +114,7 @@ const PostFooter = ({ post }: { post: PostMeta }) => {
     </div>
   )
 }
+
 export default async function PagePostDetail({
   params,
 }: {
@@ -164,4 +160,11 @@ export async function generateMetadata(
       description: 'not found'
     }
   }
+}
+
+export async function generateStaticParams() {
+  const metas = await getAllPostsMeta()
+  return metas.map(meta => {
+    return { id: `${meta.id}.html` }
+  })
 }
