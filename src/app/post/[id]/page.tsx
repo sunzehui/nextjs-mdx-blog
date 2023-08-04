@@ -145,7 +145,6 @@ export async function generateMetadata(
   { params, searchParams }: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // @TODO: 适配旧版blog，待删除
   const id = params.id.endsWith('.html') ? params.id.slice(0, -5) : params.id
   try {
     const post = await getPost(id)

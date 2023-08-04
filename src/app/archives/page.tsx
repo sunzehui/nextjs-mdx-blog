@@ -5,7 +5,7 @@ import { dateFormat } from "@/utils/time"
 import { Metadata } from "next"
 import Link from "next/link"
 import { FC } from "react"
-import { getArchives } from "../feed/post"
+import { Archives, getArchives } from "@app/feed/post"
 
 export const metadata: Metadata = {
   title: '归档-孙泽辉',
@@ -26,6 +26,7 @@ const Record: FC<RecordProps> = ({ post }) => {
     </div >
   )
 }
+
 interface TitleProps {
   year: string
   num: number
@@ -38,6 +39,7 @@ const Title: FC<TitleProps> = ({ year, num }) => {
     </div>
   )
 }
+
 interface YearProps {
   year: string
   posts: PostMeta[]
@@ -61,19 +63,26 @@ const Year: FC<YearProps> = ({ year, posts }) => {
   )
 }
 
+interface YearsProps {
+  years: string[];
+  archives: Archives;
+}
+const Years: FC<YearsProps> = ({ years, archives }) => {
+  return (
+    <>
+      {years.map((year) => {
+        const posts = archives[year];
+        return <Year key={year} year={year} posts={posts} />;
+      })}
+    </>
+  );
+};
 export default async function Page() {
   const archives = await getArchives()
   const years = Object.keys(archives).sort((a, b) => parseInt(b) - parseInt(a))
   return (
     <OutlineContainer className={`flex flex-col gap-10`}>
-      {
-        years.map((year) => {
-          const posts = archives[year]
-          return (
-            <Year key={year} year={year} posts={posts} />
-          )
-        })
-      }
+      <Years years={years} archives={archives} />
     </OutlineContainer>
   )
 }

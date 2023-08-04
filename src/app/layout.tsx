@@ -4,6 +4,7 @@ import Footer from './footer'
 import Header from './header'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { ReactNode } from 'react'
 config.autoAddCss = false
 
 export const generateMetadata = async () => {
@@ -23,7 +24,7 @@ export const generateMetadata = async () => {
 }
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default async function RootLayout({

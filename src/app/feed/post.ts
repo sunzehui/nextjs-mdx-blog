@@ -28,8 +28,10 @@ export const getList = async ({ tag }: GetListParams = {}) => {
 }
 interface QueryPostsResult {
   posts: PostMeta[]
-  postCount: number
-  pageCount: number
+  pagination: {
+    postCount: number
+    pageCount: number
+  }
 }
 export const getListWithPagination = async ({ page, size }: GetListParams = {}) => {
   const allPosts = await getList()
@@ -41,15 +43,20 @@ export const getListWithPagination = async ({ page, size }: GetListParams = {}) 
   }
   const result: QueryPostsResult = {
     posts,
-    postCount: posts.length,
-    pageCount: 1
+    pagination: {
+      postCount: posts.length,
+      pageCount: 1
+    }
   }
   if (page && size) {
-    result.pageCount = Math.ceil(allPosts.length / size)
+    result.pagination.pageCount = Math.ceil(allPosts.length / size)
   }
   return result
 }
 
+export interface Archives {
+  [year: string]: PostMeta[];
+}
 export const getArchives = async () => {
   const metas = await getAllPostsMeta()
   const archives = metas
@@ -62,7 +69,7 @@ export const getArchives = async () => {
       return acc
     }, {} as Record<string, any>)
 
-  return archives as Record<string, PostMeta[]>
+  return archives as Archives
 }
 
 export const getTags = async () => {

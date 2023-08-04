@@ -1,7 +1,8 @@
 import type { FC, PropsWithChildren } from 'react'
+import { ParsedUrlQuery } from "querystring";
 
 declare global {
-  export type NextPageParams<P extends {}, Props = {}> = PropsWithChildren<
+  export type NextPageParams<P extends ParsedUrlQuery, Props = {}> = PropsWithChildren<
     {
       params: P
     } & Props
@@ -13,4 +14,5 @@ declare global {
     className?: string
   } & PropsWithChildren &
     P
+
 }
