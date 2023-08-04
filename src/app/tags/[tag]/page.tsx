@@ -48,7 +48,7 @@ function PostList({ posts }: { posts: PostMeta[] }) {
 interface PageParams extends ParsedUrlQuery {
   tag: string
 }
-export default async function Page({ params }: NextPageParams<PageParams>) {
+export default async function Page({ params }: { params: PageParams }) {
   const { tag } = params
 
   const posts = await getList({ tag }).catch(e => {
@@ -64,7 +64,7 @@ export default async function Page({ params }: NextPageParams<PageParams>) {
   )
 }
 
-export const generateMetadata = async ({ params }: { params: { tag: string } }) => {
+export const generateMetadata = async ({ params }: { params: PageParams }) => {
   const { tag } = params
 
   return {

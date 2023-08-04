@@ -13,6 +13,7 @@ import { OutlineContainer } from '@/components/layout';
 import { components } from '@/lib/md-el';
 import rehypeMathjax from 'rehype-mathjax'
 import Head from "next/head";
+import { ParsedUrlQuery } from 'querystring';
 
 interface PostNavProps {
   prevPost: PostMeta | null
@@ -114,11 +115,13 @@ const PostFooter = ({ post }: { post: PostMeta }) => {
     </div>
   )
 }
-
+interface PageParams extends ParsedUrlQuery {
+  id: string
+}
 export default async function PagePostDetail({
   params,
 }: {
-  params: { id: string };
+  params: PageParams;
 }) {
   // @TODO: 适配旧版blog，待删除
   const id = params.id.endsWith('.html') ? params.id.slice(0, -5) : params.id
@@ -142,8 +145,7 @@ export default async function PagePostDetail({
 }
 
 export async function generateMetadata(
-  { params, searchParams }: any,
-  parent: ResolvingMetadata
+  { params }: { params: PageParams }
 ): Promise<Metadata> {
   const id = params.id.endsWith('.html') ? params.id.slice(0, -5) : params.id
   try {
