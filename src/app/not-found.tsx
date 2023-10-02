@@ -4,7 +4,7 @@ import '@/assets/styles/global.scss'
 export default function NotFound() {
   return (
     <div className='p-3 flex items-center flex-col'>
-      <div className="hit-the-floor text-slate-50 dark:text-neutral-400">
+      <div className="hit-the-floor text-slate-50 dark:text-slate-950">
         404
       </div>
 

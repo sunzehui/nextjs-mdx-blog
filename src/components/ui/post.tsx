@@ -14,7 +14,7 @@ export const Post = ({ ...props }: PostProps) => {
   return (
     <div className="mb-3 flex flex-col gap-1">
       <Link href={`/post/${id}`}>
-        <div className="cursor-pointer text-zinc-800 text-2xl font-normal leading-10 ">
+        <div className="cursor-pointer text-zinc-800 dark:text-zinc-200 text-2xl font-normal leading-10 ">
           <h2 className="inline-block hover-underline">
             {title}
           </h2>

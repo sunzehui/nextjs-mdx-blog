@@ -11,7 +11,7 @@ export const OutlineContainer: FC<OutlineContainerProps> = ({ children, classNam
   return (
     <div
       className={clsxm(
-        "outline-container w-full shadow-inner desktop:px-[20px] px-3 py-4 bg-white rounded-lg  border border-slate-300 ",
+        "outline-container w-full shadow-inner desktop:px-[20px] px-3 py-4 rounded-lg border bg-white dark:bg-gray-950 dark:text-white border-slate-300 ",
         className
       )}
     >

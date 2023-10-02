@@ -1,63 +1,71 @@
 'use client'
-import { Highlight, Language, themes } from 'prism-react-renderer'
-import { clsxm } from '@/utils/helper'
+import { useState, useRef } from 'react'
 
-interface CodeBlockProps {
-  className?: string
-  children?: string
-}
-export function CodeBlock(
-  props: any
-) {
-  const { className, children } = props as CodeBlockProps
-  if (!children) return null
+const Pre = (props) => {
+  const textInput = useRef(null)
+  const [hovered, setHovered] = useState(false)
+  const [copied, setCopied] = useState(false)
 
-  const language = className?.replace(/language-/, '') as Language
-  // 没有语言则表明它是 `code` 写法，而不是代码块
-  if (!language && !children.endsWith('\n')) {
-    return (
-      <code className="mdx-code">{children}</code>
-    )
+  const onEnter = () => {
+    setHovered(true)
   }
-  const code = children.trim()
+  const onExit = () => {
+    setHovered(false)
+    setCopied(false)
+  }
+  const onCopy = () => {
+    setCopied(true)
+    navigator.clipboard.writeText(textInput.current.textContent)
+    setTimeout(() => {
+      setCopied(false)
+    }, 2000)
+  }
 
   return (
-    <div className='code-block relative '>
-      <div className="absolute right-2 top-0 px-3  rounded-tl-md rounded-tr-md  text-slate-300  dark:text-slate-400 font-mono font-medium text-2xl leading-none select-none">
-        {language?.toUpperCase()}
-      </div>
-      <Highlight code={code} theme={themes.github} language={language || 'bash'}>
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <div style={{ ...style, paddingTop: 5, paddingBottom: 5, overflowX: 'scroll' }} >
-            {tokens.map((line, i) => {
-              return (
-                <div
-                  key={i}
-                  {...getLineProps({
-                    line,
-                    className: clsxm({
-                      // highlight: highlightLines.includes(i + 1),
-                      // added: addedLines.includes(i + 1),
-                      // removed: removedLines.includes(i + 1),
-                      // focused: focusedLines.includes(i + 1),
-                      // error: errorLines.includes(i + 1),
-                      // warning: warningLines.includes(i + 1),
-                    }),
-                  })}
-                >
-                  <span
-                    className='pr-2 mr-2 min-w-[2em] text-right text-gray-600  inline-block select-none border-r border-gray-300'
-                  >{i + 1}</span>
-                  {line.map((token: any, key: any) => (
-                    <span key={key} {...getTokenProps({ token })} />
-                  ))}
-                </div>
-              )
-            })}
+    <div ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative">
+      {hovered && (
+        <button
+          aria-label="Copy code"
+          type="button"
+          className={`absolute right-2 top-2 h-8 w-8 rounded border-2 bg-gray-700 p-1 dark:bg-gray-800 ${copied
+            ? 'border-green-400 focus:border-green-400 focus:outline-none'
+            : 'border-gray-300'
+            }`}
+          onClick={onCopy}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            fill="none"
+            className={copied ? 'text-green-400' : 'text-gray-300'}
+          >
+            {copied ? (
+              <>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                />
+              </>
+            ) : (
+              <>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                />
+              </>
+            )}
+          </svg>
+        </button>
+      )}
 
-          </div>
-        )}
-      </Highlight>
+      <pre>{props.children}</pre>
     </div>
   )
 }
+
+export default Pre

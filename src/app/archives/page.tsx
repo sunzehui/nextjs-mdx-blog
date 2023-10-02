@@ -18,9 +18,11 @@ interface RecordProps {
 const Record: FC<RecordProps> = ({ post }) => {
   return (
     <div className="gap-2 flex">
-      <div className="w-24 text-zinc-400 text-base font-normal leading-relaxed flex-shrink-0">{dateFormat(post.date)}</div>
+      <div className="w-24 text-zinc-400 dark:text-zinc-600 text-base font-normal leading-relaxed flex-shrink-0">
+        {dateFormat(post.date)}
+      </div>
       <Link href={`/post/${post.id}`}
-        className="inline-block  text-black text-base font-normal leading-relaxed hover-underline  break-all flex-grow ">
+        className="inline-block  text-black dark:text-white text-base font-normal leading-relaxed hover-underline  break-all flex-grow ">
         {post.title}
       </Link>
     </div >
@@ -34,7 +36,7 @@ interface TitleProps {
 const Title: FC<TitleProps> = ({ year, num }) => {
   return (
     <div className="Title  justify-start items-end inline-flex  ">
-      <span className="text-black text-3xl font-bold leading-none">{year}</span>
+      <span className="text-black dark:text-white text-3xl font-bold leading-none">{year}</span>
       <div className="ml-2 text-neutral-500 text-base font-normal leading-none">[{num}]</div>
     </div>
   )

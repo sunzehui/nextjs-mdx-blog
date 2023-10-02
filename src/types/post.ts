@@ -11,6 +11,6 @@ export interface PostMeta {
 }
 
 export interface PostDetail {
-  content: any
+  mdxSource: any
   meta: PostMeta
 }
