@@ -1,4 +1,4 @@
-import { getMDXComponent } from "mdx-bundler/client"
+import { getMDXComponent, MDXContentProps } from "mdx-bundler/client"
 import '@/assets/styles/md-el.scss'
 import { Button } from '@/components/markdown/Button';
 import { Image } from '@/components/markdown/Image'
@@ -6,8 +6,7 @@ import { Link } from '@/components/markdown/Link'
 import CodeBlock from "@/components/markdown/CodeBlock";
 import { useMemo } from "react";
 
-export const mdxComponents = {
-  Image,
+export const mdxComponents: MDXContentProps['components'] = {
   Button,
   pre: CodeBlock,
   a: Link,

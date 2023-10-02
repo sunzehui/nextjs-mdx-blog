@@ -2,7 +2,7 @@
 import { GapPoint, Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
 import { EnterAnimation } from '@/components/common';
-import { getAllPostsMeta, getPost, Markdown } from '@/lib/mdx';
+import { getAllPostsMeta, getPost } from '@/lib/mdx';
 import { FC, ReactNode, Suspense, useMemo } from 'react';
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'

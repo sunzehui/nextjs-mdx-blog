@@ -1,8 +1,8 @@
 'use client'
 import { useState, useRef } from 'react'
 
-const Pre = (props) => {
-  const textInput = useRef(null)
+const CodeBlock = (props: any) => {
+  const textInput = useRef<HTMLInputElement | null>(null)
   const [hovered, setHovered] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -15,7 +15,7 @@ const Pre = (props) => {
   }
   const onCopy = () => {
     setCopied(true)
-    navigator.clipboard.writeText(textInput.current.textContent)
+    navigator.clipboard.writeText(textInput.current!.textContent || '')
     setTimeout(() => {
       setCopied(false)
     }, 2000)
@@ -68,4 +68,4 @@ const Pre = (props) => {
   )
 }
 
-export default Pre
+export default CodeBlock
