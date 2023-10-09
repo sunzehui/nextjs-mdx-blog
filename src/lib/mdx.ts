@@ -74,7 +74,7 @@ export const getPostBySlug = cache(async (slug: string) => {
 
   return {
     meta: {
-      ...frontmatter, slug: fileName, id, readingTime: readingTime(code)
+      ...frontmatter, slug: fileName, id, readingTime: readingTime(fileContent),
     },
     mdxSource: code
   } as PostDetail
