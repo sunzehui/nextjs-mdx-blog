@@ -9,6 +9,7 @@ import rehypeKatex from 'rehype-katex'
 import readingTime from 'reading-time'
 
 import rehypePrismPlus from 'rehype-prism-plus'
+import { cache } from 'react'
 
 
 const root = process.cwd()
@@ -35,7 +36,7 @@ const getPostFileName = (slug: string) => {
   }
 }
 
-export const getPostBySlug = async (slug: string) => {
+export const getPostBySlug = cache(async (slug: string) => {
   const { name: fileName, ext } = getPostFileName(slug)
 
   const filePath = path.join(postsDirectory, `${slug}`)
@@ -77,7 +78,7 @@ export const getPostBySlug = async (slug: string) => {
     },
     mdxSource: code
   } as PostDetail
-}
+})
 
 export const mapSlug = async (slug: string) => {
   const idMap = await getPostsIdMap()

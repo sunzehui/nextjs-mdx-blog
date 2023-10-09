@@ -4,7 +4,10 @@ import Footer from './footer'
 import Header from './header'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { ReactNode } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
+import type { AppProps } from 'next/app';
+
+
 config.autoAddCss = false
 
 export const generateMetadata = async () => {
@@ -23,25 +26,16 @@ export const generateMetadata = async () => {
   }
 }
 
-interface RootLayoutProps {
-  children: ReactNode
-}
-
 export default async function RootLayout({
-  children
-}: RootLayoutProps) {
+  children,
+}: PropsWithChildren) {
   return (
     <html lang="zh-Hans" className='noise' >
       <head>
         <SayHi />
-
       </head>
-      <body className="scroll-smooth antialiased bg-orange-50/20 " >
-        <div className="desktop:w-4/6 max-w-5xl h-full desktop:px-6 px-3 mx-auto">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+      <body className="scroll-smooth antialiased bg-orange-50/20" >
+        {children}
       </body>
     </html>
   )

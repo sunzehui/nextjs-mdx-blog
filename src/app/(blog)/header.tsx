@@ -9,9 +9,6 @@ export default function Header() {
         </Link>
       </div>
       <div className="justify-start items-start gap-[20px] inline-flex text-sm font-normal leading-relaxed">
-        <Link href={`/`}>
-          首页
-        </Link>
         <Link href={`/post`}>
           文章
         </Link>
