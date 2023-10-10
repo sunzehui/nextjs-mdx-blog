@@ -1,11 +1,8 @@
 import '@/assets/styles/global.scss'
 import PKG from '../../package.json'
-import Footer from './footer'
-import Header from './header'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { PropsWithChildren, ReactNode } from 'react'
-import type { AppProps } from 'next/app';
+import { PropsWithChildren } from 'react'
 
 
 config.autoAddCss = false
