@@ -37,11 +37,6 @@
   }
 }
 
-html,
-body {
-  height: 100%;
-}
-
 .hover-underline {
   @apply relative transition-all duration-300;
   @apply after:transition-opacity after:duration-300;

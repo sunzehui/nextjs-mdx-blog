@@ -8,6 +8,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import readingTime from 'reading-time'
 
+import rehypeSlug from 'rehype-slug'
 import rehypePrismPlus from 'rehype-prism-plus'
 import { cache } from 'react'
 
@@ -60,6 +61,7 @@ export const getPostBySlug = cache(async (slug: string) => {
         ...(options.rehypePlugins ?? []),
         rehypeKatex,
         [rehypePrismPlus, { ignoreMissing: true }],
+        rehypeSlug
       ]
       return options
     },

@@ -3,13 +3,13 @@ import { GapPoint, Tag } from '@/components/ui';
 import { dateFormat, durationFormat } from '@/utils/time';
 import { EnterAnimation } from '@/components/common';
 import { getAllPostsMeta, getPost } from '@/lib/mdx';
-import { FC, ReactNode, Suspense, useMemo } from 'react';
+import { FC, ReactNode } from 'react';
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PostMeta } from '@/types/post';
 import { OutlineContainer } from '@/components/layout';
+import TableOfContent from '@/components/ui/table-of-content';
 import { ParsedUrlQuery } from 'querystring';
-import { getMDXComponent } from 'mdx-bundler/client'
 
 interface PostNavProps {
   prevPost: PostMeta | null
@@ -87,17 +87,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post }) => {
 interface PostContentProps {
   code: string
 }
-const PostContent = ({ code }: PostContentProps) => {
-  const Component = useMemo(() => getMDXComponent(code), [code])
 
-  return (
-    <div className="markdown-body w-full break-words whitespace-normal ">
-      <Suspense fallback={<>Loading...</>}>
-        <Component />
-      </Suspense>
-    </div>
-  )
-}
 const PostFooter = ({ post }: { post: PostMeta }) => {
   return (
     <div className="w-full justify-between items-start inline-flex">
@@ -134,14 +124,19 @@ export default async function PagePostDetail({
 
   return (
     <>
+
       <OutlineContainer>
+
+        <TableOfContent />
         <EnterAnimation>
           <PostHeader post={post} />
           {children}
           <PostFooter post={post} />
         </EnterAnimation>
       </OutlineContainer>
+
     </>
+
   )
 }
 
