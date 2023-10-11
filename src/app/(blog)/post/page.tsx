@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const NoArticlesMessage = () => {
   return (
-    <OutlineContainer>
+    <OutlineContainer className="flex-1">
       <div className="text-center text-2xl font-bold leading-10">
         <h2 className="inline-block">
           暂无文章
@@ -53,7 +53,7 @@ interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({ nextPage, pagination }) => {
   const { pageCount } = pagination
   const isLastOrFirst = (page: number) => page <= 0 || page > pageCount
-  const getNavCn = (page: number) => clsxm("btn px-9", isLastOrFirst(page) ? "btn-disabled" : "")
+  const getNavCn = (page: number) => clsxm("btn px-9", isLastOrFirst(page) ? "hidden" : "")
 
   return (
     <nav className="flex justify-between mt-4">
@@ -88,7 +88,7 @@ export default async function PagePostList(props: PageProps) {
   if (pagination.postCount === 0) return <NoArticlesMessage />
 
   return (
-    <OutlineContainer>
+    <OutlineContainer className="">
       <PostList posts={posts} />
       <Pagination nextPage={nextPage} pagination={pagination} />
     </OutlineContainer>

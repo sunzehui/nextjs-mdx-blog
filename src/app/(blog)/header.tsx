@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return <>
-    <div className="desktop:p-[20px] p-3 flex flex-col justify-center items-start ">
+    <div className="desktop:p-[20px] p-3 flex flex-col justify-center items-start blog-container mx-auto">
       <div className=" text-zinc-800 text-2xl font-blod leading-relaxed">
         <Link href={"/"}>
           孙泽辉
