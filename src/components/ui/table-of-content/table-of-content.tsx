@@ -64,12 +64,19 @@ const TableOfContent = () => {
    */
   const handleLinkClick = (event: React.MouseEvent, id: string) => {
     event.preventDefault();
+    console.log('click', id);
 
     const element = document.getElementById(id)!;
-    const offsetPosition = element.getBoundingClientRect().top;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = element.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
 
-    document.body.scrollTo({
-      top: document.body.scrollTop + offsetPosition - 30,
+    /**
+     * Note @MaximeHeckel: This doesn't work on Safari :(
+     * TODO: find an alternative for Safari
+     */
+    window.scrollTo({
+      top: elementPosition,
       behavior: 'smooth',
     });
   };
@@ -78,7 +85,7 @@ const TableOfContent = () => {
    * to have its corresponding title highlighted in the
    * table of content
    */
-  const currentActiveIndex = useScrollSpy(
+  const [currentActiveIndex] = useScrollSpy(
     ids.map(
       (item) => document.querySelector(`[id="${item.id}"]`)!
     ),
