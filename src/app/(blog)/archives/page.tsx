@@ -1,5 +1,5 @@
 import { EnterAnimation } from "@/components/common"
-import { OutlineContainer } from "@/components/layout"
+import { Card } from "@/components/layout"
 import { PostMeta } from "@/types/post"
 import { dateFormat } from "@/utils/time"
 import { Metadata } from "next"
@@ -83,8 +83,8 @@ export default async function Page() {
   const archives = await getArchives()
   const years = Object.keys(archives).sort((a, b) => parseInt(b) - parseInt(a))
   return (
-    <OutlineContainer className={`flex flex-col gap-10`}>
+    <Card className={`flex flex-col gap-10`}>
       <Years years={years} archives={archives} />
-    </OutlineContainer>
+    </Card>
   )
 }

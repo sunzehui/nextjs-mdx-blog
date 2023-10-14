@@ -2,7 +2,7 @@
 @import 'scrollbar';
 @import 'prism';
 @import 'icons';
-
+@import 'layout';
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -42,8 +42,4 @@
   @apply after:transition-opacity after:duration-300;
   @apply after:absolute after:opacity-0 after:inset-x-0 after:bottom-0 after:h-px after:bg-blue-500;
   @apply hover:after:opacity-100;
-}
-
-.blog-container {
-  max-width: 992px;
 }

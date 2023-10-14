@@ -26,7 +26,7 @@ const Record: FC<RecordProps> = ({ className, k, v }) => {
 }
 export default function Footer() {
   return (
-    <footer style={{ boxShadow: '0 4px 10px rgba(0,2,4,.06),0 0 1px rgba(0,2,4,.11)' }} className="py-10 w-full flex   dark:bg-slate-600 bg-white justify-center items-center">
+    <footer style={{ boxShadow: '0 4px 10px rgba(0,2,4,.06),0 0 1px rgba(0,2,4,.11)' }} className="py-10 mt-5 w-full flex   dark:bg-slate-600 bg-white justify-center items-center">
       <div className="grow shrink  blog-container basis-0 self-stretch px-3 flex flex-col items-center desktop:flex-row  desktop:justify-between">
         <div className="Left flex flex-wrap justify-center">
           <Record k="Copyright © 2023" v={config.siteName} />

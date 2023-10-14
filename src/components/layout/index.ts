@@ -1,1 +1,1 @@
-export { OutlineContainer } from './outline-container';
+export { Card } from './card';

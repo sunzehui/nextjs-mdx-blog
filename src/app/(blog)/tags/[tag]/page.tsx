@@ -1,6 +1,6 @@
 import { getList, getTags } from "@/app/feed/post";
 import { notFound } from "next/navigation";
-import { OutlineContainer } from "@/components/layout";
+import { Card } from "@/components/layout";
 import { Post } from "@/components/ui";
 import { EnterAnimation } from "@/components/common";
 import { ParsedUrlQuery } from "querystring";
@@ -14,7 +14,7 @@ interface TagInfoProps {
 
 function TagInfo({ tag, posts }: TagInfoProps) {
   return (
-    <OutlineContainer className="shadow-[0_8px_30px_rgb(0,0,0,0.12)] mb-2 h-16 flex items-center">
+    <Card className="shadow-[0_8px_30px_rgb(0,0,0,0.12)] mb-2 h-16 flex items-center">
       <EnterAnimation>
         <div className="flex items-end">
           <span className="px-3 text-2xl ">
@@ -25,12 +25,12 @@ function TagInfo({ tag, posts }: TagInfoProps) {
           </span>
         </div>
       </EnterAnimation>
-    </OutlineContainer>
+    </Card>
   )
 }
 function PostList({ posts }: { posts: PostMeta[] }) {
   return (
-    <OutlineContainer>
+    <Card>
       <EnterAnimation delay={.2}>
         <div className="post-list px-2 ">
           {
@@ -42,7 +42,7 @@ function PostList({ posts }: { posts: PostMeta[] }) {
           }
         </div>
       </EnterAnimation>
-    </OutlineContainer>
+    </Card>
   )
 }
 interface PageParams extends ParsedUrlQuery {

@@ -1,7 +1,7 @@
 import { getList, getListWithPagination } from "@/app/feed/post"
 import { Metadata } from "next";
 import { EnterAnimation } from "@/components/common";
-import { OutlineContainer } from "@/components/layout";
+import { Card } from "@/components/layout";
 import { Post } from "@/components/ui";
 import Link from "next/link";
 import { clsxm } from "@/utils/helper";
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 
 const NoArticlesMessage = () => {
   return (
-    <OutlineContainer className="flex-1">
+    <Card className="flex-1">
       <div className="text-center text-2xl font-bold leading-10">
         <h2 className="inline-block">
           暂无文章
         </h2>
       </div>
-    </OutlineContainer>
+    </Card>
   );
 };
 
@@ -88,10 +88,10 @@ export default async function PagePostList(props: PageProps) {
   if (pagination.postCount === 0) return <NoArticlesMessage />
 
   return (
-    <OutlineContainer className="">
+    <Card className="">
       <PostList posts={posts} />
       <Pagination nextPage={nextPage} pagination={pagination} />
-    </OutlineContainer>
+    </Card>
   )
 }
 

@@ -7,7 +7,7 @@ import { FC, ReactNode } from 'react';
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PostMeta } from '@/types/post';
-import { OutlineContainer } from '@/components/layout';
+import { Card } from '@/components/layout';
 import TableOfContent from '@/components/ui/table-of-content';
 import { ParsedUrlQuery } from 'querystring';
 
@@ -106,7 +106,13 @@ const PostFooter = ({ post }: { post: PostMeta }) => {
 }
 interface PageParams extends ParsedUrlQuery {
   id: string
-
+}
+const LeftSide = () => {
+  return (
+    <div className="desktop:w-1/4 w-1/2 flex flex-col gap-5">
+      <TableOfContent />
+    </div>
+  )
 }
 interface PostLayoutProps {
   params: PageParams;
@@ -123,20 +129,14 @@ export default async function PagePostDetail({
   const post = postPayload.meta
 
   return (
-    <>
-
-      <OutlineContainer>
-
-        <TableOfContent />
-        <EnterAnimation>
-          <PostHeader post={post} />
-          {children}
-          <PostFooter post={post} />
-        </EnterAnimation>
-      </OutlineContainer>
-
-    </>
-
+    <Card>
+      <LeftSide />
+      <EnterAnimation>
+        <PostHeader post={post} />
+        {children}
+        <PostFooter post={post} />
+      </EnterAnimation>
+    </Card>
   )
 }
 

@@ -1,5 +1,5 @@
 import { EnterAnimation } from "@/components/common"
-import { OutlineContainer } from "@/components/layout"
+import { Card } from "@/components/layout"
 import { Metadata } from "next"
 import Link from "next/link"
 import { FC } from "react"
@@ -42,10 +42,10 @@ export default async function Page() {
   const tags = await getTags()
 
   return (
-    <OutlineContainer >
+    <Card>
       <EnterAnimation>
         <TagCloud tags={tags} />
       </EnterAnimation>
-    </OutlineContainer>
+    </Card>
   )
 }
