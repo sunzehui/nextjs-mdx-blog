@@ -5,14 +5,17 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { PropsWithChildren, ReactNode } from 'react'
 import { Card } from '@/components/layout'
 import Link from 'next/link'
-import { getArchives, getTags } from '../feed/post'
+import { Archives, getArchives, getTags } from '../feed/post'
+import { Tag } from '@/types/tag'
 
-const TagCard = ({ tags }) => {
+interface TagProps {
+  tags: Tag[]
+}
+const TagCard = ({ tags }: TagProps) => {
   return (
     <>
       <Card title={'标签'}>
         <div className="tag-group">
-
           {tags.map((tag) => (
             <Link
               className="inline-block leading-none text-md mr-2 py-2 hover-underline"
@@ -27,32 +30,35 @@ const TagCard = ({ tags }) => {
     </>
   )
 }
-const Profile = () => {
-  return (
-    <Card>
-      <div className="flex flex-col gap-3">
-        <div className="w-full text-zinc-800 dark:text-zinc-200 text-2xl font-normal leading-relaxed">
-          <h2 className="inline-block">
-            孙泽辉
-          </h2>
-        </div>
-        <div className="w-full text-neutral-500 text-md font-light ">
-          <p>我是描述</p>
-        </div>
-      </div>
-    </Card>
-  )
-}
+// const Profile = () => {
+//   return (
+//     <Card>
+//       <div className="flex flex-col gap-3">
+//         <div className="w-full text-zinc-800 dark:text-zinc-200 text-2xl font-normal leading-relaxed">
+//           <h2 className="inline-block">
+//             孙泽辉
+//           </h2>
+//         </div>
+//         <div className="w-full text-neutral-500 text-md font-light ">
+//           <p>我是描述</p>
+//         </div>
+//       </div>
+//     </Card>
+//   )
+// }
 
-const LeftSide = ({ tags }) => {
-  return (
-    <div className="sidebar flex flex-col gap-5">
-      <Profile />
+// const LeftSide = ({ tags }) => {
+//   return (
+//     <div className="sidebar flex flex-col gap-5">
+//       <Profile />
 
-    </div>
-  )
+//     </div>
+//   )
+// }
+interface ArchiveCardProps {
+  archives: Archives
 }
-const ArchiveCard = ({ archives }) => {
+const ArchiveCard = ({ archives }: ArchiveCardProps) => {
   const years = Object.keys(archives).sort((a, b) => parseInt(b) - parseInt(a))
 
   return (
@@ -63,8 +69,6 @@ const ArchiveCard = ({ archives }) => {
             <span className='year'>{year}</span>
             <span className='num bg-gray-500 text-white rounded-xl px-3'>{archives[year].length}</span>
           </Link>
-
-
         ))
       }
     </Card>
@@ -72,7 +76,11 @@ const ArchiveCard = ({ archives }) => {
 
   )
 }
-const RightSide = ({ archives, tags }) => {
+interface RightSideProps {
+  archives: Archives
+  tags: Tag[]
+}
+const RightSide = ({ archives, tags }: RightSideProps) => {
   return (<div className="sidebar flex flex-col gap-5 ">
 
     <ArchiveCard archives={archives} />

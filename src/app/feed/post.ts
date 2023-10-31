@@ -1,6 +1,7 @@
 'use server'
 import { getAllPostsMeta } from '@/lib/mdx'
 import { PostMeta } from '@/types/post'
+import { Tag } from '@/types/tag'
 
 
 const getListByTag = async (tag: string) => {
@@ -89,6 +90,6 @@ export const getTags = async () => {
       count: tags[tag]
     }
   })
-  return tagsList
+  return tagsList as Tag[]
 }
 
