@@ -48,7 +48,6 @@ const LeftSide = ({ tags }) => {
   return (
     <div className="sidebar flex flex-col gap-5">
       <Profile />
-      <TagCard tags={tags} />
 
     </div>
   )
@@ -73,9 +72,12 @@ const ArchiveCard = ({ archives }) => {
 
   )
 }
-const RightSide = ({ archives }) => {
-  return (<div className="sidebar flex flex-col gap-5">
+const RightSide = ({ archives, tags }) => {
+  return (<div className="sidebar flex flex-col gap-5 ">
+
     <ArchiveCard archives={archives} />
+    <TagCard tags={tags} />
+
   </div>)
 }
 
@@ -88,12 +90,11 @@ export default async function RootLayout({
   return (
     <div>
       <Header />
-      <main className='flex blog-container mx-auto'>
-        <LeftSide tags={tags} />
-        <div className="flex-1 min-w-0 desktop:px-6 px-3 pb-3">
+      <main className='flex blog-container mx-auto flex-col desktop:flex-row'>
+        <div className="flex-1 min-w-0 desktop:pr-6 pr-3 pb-3">
           {children}
         </div>
-        <RightSide archives={archives} />
+        <RightSide archives={archives} tags={tags} />
       </main>
       <Footer />
     </div>

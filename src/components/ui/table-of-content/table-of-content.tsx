@@ -94,7 +94,7 @@ const TableOfContent = () => {
   return (
     <motion.div
       style={{
-        width: 'calc(calc(100vw - 992px) / 2)'
+        width: 'calc(calc(100vw - 1024px) / 2 )'
       }}
       className='fixed desktop:flex hidden pl-3 left-3 top-1/2 -translate-y-1/2' hidden={!shouldShowTableOfContent}>
       <ProgressBar progress={readingProgress} />

@@ -109,7 +109,7 @@ interface PageParams extends ParsedUrlQuery {
 }
 const LeftSide = () => {
   return (
-    <div className="desktop:w-1/4 w-1/2 flex flex-col gap-5">
+    <div className="flex flex-col gap-5 break-words">
       <TableOfContent />
     </div>
   )
