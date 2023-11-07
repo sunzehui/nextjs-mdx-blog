@@ -70,8 +70,13 @@
     }
   }
 
-  .code-block {
+  .code-highlight {
     @apply leading-normal;
+    
+    // background:rgb(27, 27, 29)
+  }
+  .highlight-words{
+    @apply dark:text-white;
   }
 
   // Emphasis
@@ -149,7 +154,7 @@
     // list-style: disc;
     > li {
       &::marker {
-        @apply mr-2 text-primary font-medium;
+        @apply mr-2 font-medium text-primary;
         content: '•';
       }
     }

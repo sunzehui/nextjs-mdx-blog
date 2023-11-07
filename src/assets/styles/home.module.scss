@@ -1,49 +1,36 @@
+@import 'mixin';
 .page {
   @apply h-screen w-full  flex justify-center items-center;
-
   background: radial-gradient(#313131, #0a0a0a);
 }
 .card-inner {
   padding: 0;
   border: 0;
-  width: 35%;
   @apply flex flex-col text-center;
+  width: 100% ;
 
-  @media screen and (max-width: 1024px) {
+  header {
+    h1 {
+      font-size: 1rem;
+    }
+    h2 {
+      font-size: 0.8rem ;
+    }
+  }
+
+  ul {
+    li {
+      font-size: 0.8rem ;
+    }
+  }
+  
+  @include respond-above(md){
+    width: 60%;
+  }
+  @include respond-above(xl){
     width: 45%;
   }
-
-  @media screen and (max-width: 768px) {
-    width: 50%;
-  }
-
-  @media screen and (max-width: 540px) {
-    width: 60% !important;
-
-    header {
-      h1 {
-        font-size: 1rem !important;
-      }
-      h2 {
-        font-size: 0.8rem !important;
-      }
-    }
-
-    ul {
-      li {
-        font-size: 0.8rem !important;
-      }
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    width: 90% !important;
-  }
-
-  @media screen and (max-width: 360px) {
-    width: 100% !important;
-  }
-
+  
   header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 40px;

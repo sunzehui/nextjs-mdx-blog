@@ -85,20 +85,17 @@ const TableOfContent = () => {
    * to have its corresponding title highlighted in the
    * table of content
    */
-  const [currentActiveIndex] = useScrollSpy(
+  const [currentActiveIndex,scrolled] = useScrollSpy(
     ids.map(
       (item) => document.querySelector(`[id="${item.id}"]`)!
-    ),
+    )
   );
 
   return (
     <motion.div
-      style={{
-        width: 'calc(calc(100vw - 1024px) / 2 )'
-      }}
-      className='fixed desktop:flex hidden pl-3 left-3 top-1/2 -translate-y-1/2' hidden={!shouldShowTableOfContent}>
+      className='sm:flex hidden box-border py-3 pr-3'
+      hidden={!shouldShowTableOfContent}>
       <ProgressBar progress={readingProgress} />
-
       {ids.length > 0 ? (
         <ul className='flex flex-col space-y-4 ml-3'>
           {ids.map((item, index) => {
@@ -106,8 +103,8 @@ const TableOfContent = () => {
               <motion.li
                 initial="hide"
                 className={clsxm({
-                  'text-blue-500': currentActiveIndex === index
-                })}
+                  'text-primary': currentActiveIndex === index
+                },'hover:text-slate-50 duration-300')}
                 variants={variants}
                 animate="show"
                 transition={{ type: 'spring' }}

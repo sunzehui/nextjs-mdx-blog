@@ -1,0 +1,18 @@
+// 定义断点
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1280px,
+  2xl: 1400px,
+);
+// 创建一个响应式的 mixin
+@mixin respond-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no such breakpoint exists.";
+  }
+}

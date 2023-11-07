@@ -10,53 +10,14 @@ import { PostMeta } from '@/types/post';
 import { Card } from '@/components/layout';
 import TableOfContent from '@/components/ui/table-of-content';
 import { ParsedUrlQuery } from 'querystring';
+import RightSide from '@/components/layout/right-side';
+import Footer from '@/app/(no-post)/footer';
+import Header from '@/app/(no-post)/header';
 
 interface PostNavProps {
   prevPost: PostMeta | null
   nextPost: PostMeta | null
 }
-
-
-
-
-// const PostNav = ({ prevPost, nextPost }: PostNavProps) => {
-//   const getNavItemClass = (post: PostMeta) => classnames(
-//     'cursor-pointer w-2/5 px-3 max-w-64 h-14 bg-white rounded-lg justify-end items-center gap-2.5 inline-flex',
-//     post ? 'text-black' : 'text-gray-600',
-//     post ? 'cursor-pointer' : 'cursor-not-allowed',
-//   )
-//   return <nav className='w-full mt-5 flex justify-between'>
-//     <div
-//       className={getNavItemClass(prevPost)}
-//     >
-//       <div className="w-5 h-5 relative ">
-//         <img src={iconRight.src} className="w-full h-full" />
-//       </div>
-//       <div className="flex-1 text-black text-lg font-normal leading-relaxed">
-//         <When condition={prevPost} other={'没有了'}>
-//           <Link href={`/post/${prevPost?.id}`}>
-//             {prevPost?.title}
-//           </Link>
-//         </When>
-//       </div>
-//     </div>
-//     <div
-//       className={getNavItemClass(nextPost)}
-//     // className="w-2/5 px-3 max-w-64 h-14 bg-white rounded-lg justify-start items-center gap-2.5 inline-flex"
-//     >
-//       <div className="flex-1 text-right text-black text-lg font-normal leading-relaxed">
-//         <When condition={nextPost} other={'没有了'}>
-//           <Link href={`/post/${nextPost?.id}`}>
-//             {nextPost?.title}
-//           </Link>
-//         </When>
-//       </div>
-//       <div className="w-5 h-5 relative rotate-180">
-//         <img src={iconRight.src} className="w-full h-full" />
-//       </div>
-//     </div>
-//   </nav >
-// }
 interface PostHeaderProps {
   post: PostMeta
 }
@@ -129,14 +90,24 @@ export default async function PagePostDetail({
   const post = postPayload.meta
 
   return (
-    <Card>
-      <LeftSide />
-      <EnterAnimation>
-        <PostHeader post={post} />
-        {children}
-        <PostFooter post={post} />
-      </EnterAnimation>
-    </Card>
+    <>
+      <Header />
+      <main className='flex blog-container mx-auto flex-col sm:flex-row'>
+        <div className="flex-1 min-w-0 desktop:pr-6 pr-3 pb-3">
+          <Card>
+            <EnterAnimation>
+              <PostHeader post={post} />
+              {children}
+              <PostFooter post={post} />
+            </EnterAnimation>
+          </Card>
+        </div>
+        <RightSide>
+            <TableOfContent />
+        </RightSide>
+      </main>
+      <Footer />
+    </>
   )
 }
 

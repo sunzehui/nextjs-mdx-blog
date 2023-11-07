@@ -12,7 +12,7 @@ export const Card: FC<Card> = ({ children, className, title }) => {
   return (
     <div
       className={clsxm(
-        "desktop:w-auto w-full desktop:px-[20px] px-3 py-3 rounded-lg bg-white dark:bg-[#252d38] dark:text-white",
+        "w-full desktop:px-[20px] px-3 py-3 rounded-lg dark:text-base-content",
         "flex flex-col",
         className
       )}

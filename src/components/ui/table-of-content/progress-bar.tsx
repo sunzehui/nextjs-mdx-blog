@@ -40,7 +40,7 @@ const ProgressBar = ({ progress }: { progress: number }) => {
           width: '2px',
           height: '100%',
         }}
-        className={'bg-blue-500'}
+        className={'bg-primary'}
         data-testid="progress-bar"
         data-testprogress={progress}
       />

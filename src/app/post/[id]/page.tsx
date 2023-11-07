@@ -1,4 +1,3 @@
-
 import { getPost } from '@/lib/mdx';
 import { notFound } from 'next/navigation'
 import { ParsedUrlQuery } from 'querystring';

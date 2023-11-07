@@ -1,3 +1,5 @@
+@import 'vars';
+@import 'mixin';
 @import 'tailwind';
 @import 'scrollbar';
 @import 'prism';
@@ -37,9 +39,41 @@
   }
 }
 
+
 .hover-underline {
-  @apply relative transition-all duration-300;
-  @apply after:transition-opacity after:duration-300;
-  @apply after:absolute after:opacity-0 after:inset-x-0 after:bottom-0 after:h-px after:bg-blue-500;
-  @apply hover:after:opacity-100;
+  // bg-blue-500
+  --color: rgb(59, 130, 246);
+  --b1: 0 0% 100%;
+  
+  .dark & {
+    --b1: 240 3% 11%;
+
+  }
+  // background: linear-gradient(transparent 50%, rgba(var(--color), 1) 50%);
+  // background-position: 0 100%;
+  // transition: background-position 0.3s ease-in-out;
+  // background-size: 0 0;
+  color: currentColor;
+  background-image: linear-gradient(var(--color),var(--color));
+  background-size: 0 1.5px;
+  background-repeat: no-repeat;
+  text-shadow: .05em 0 hsl(var(--b1)/1),-.05em 0 hsl(var(--b1)/1);
+  transition: all .5s ease;
+  border-width: 0;
+  text-decoration-line: none;
+  background-position: left 1.6em;
+  &:hover{
+    background-size: 100% 1.5px;
+    transition: all .25s ease;
+  }
+}
+html,body{
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fff;
+  .dark & {
+    background: rgb(27, 27, 29);
+  }
 }

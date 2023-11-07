@@ -3,6 +3,7 @@ import PKG from '../../package.json'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { PropsWithChildren } from 'react'
+import { Providers } from './providers'
 
 
 config.autoAddCss = false
@@ -26,15 +27,19 @@ export const generateMetadata = async () => {
 export default async function RootLayout({
   children,
 }: PropsWithChildren) {
+
   return (
-    <html lang="zh-Hans" className='noise' >
+      <html lang="zh-Hans" className='noise' suppressHydrationWarning>
       <head>
         <SayHi />
       </head>
-      <body className="scroll-smooth antialiased bg-orange-50/20" >
-        {children}
+      <body className="scroll-smooth antialiased" >
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
+
   )
 }
 

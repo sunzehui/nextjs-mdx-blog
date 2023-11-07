@@ -8,8 +8,17 @@ import { useMemo } from "react";
 
 export const mdxComponents: MDXContentProps['components'] = {
   Button,
-  pre: CodeBlock,
   a: Link,
+  code(props){
+    if(props.className?.startsWith('language-')){
+      return props.children
+    }
+    return <code className="highlight-words">
+      {props.children}
+    </code>
+  },
+  pre: CodeBlock,
+  
 }
 const DEFAULT_LAYOUT = 'PostLayout'
 interface MDXLayoutRendererProps {

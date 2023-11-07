@@ -1,11 +1,17 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, PropsWithChildren } from 'react'
 
-const CodeBlock = (props: any) => {
+interface CodeBlockProps extends PropsWithChildren{
+  className?: string
+}
+const CodeBlock = (props: CodeBlockProps) => {
   const textInput = useRef<HTMLInputElement | null>(null)
   const [hovered, setHovered] = useState(false)
   const [copied, setCopied] = useState(false)
 
+  // if (!(props.className && props.className.startsWith('language-'))) {
+  //   return <>block</>
+  // }
   const onEnter = () => {
     setHovered(true)
   }
@@ -22,12 +28,12 @@ const CodeBlock = (props: any) => {
   }
 
   return (
-    <div ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative">
+    <div ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative h-full w-full overflow-x-scroll overflow-y-hidden">
       {hovered && (
         <button
           aria-label="Copy code"
           type="button"
-          className={`absolute right-2 top-2 h-8 w-8 rounded border-2 bg-gray-700 p-1 dark:bg-gray-800 ${copied
+          className={`absolute right-2 top-0 h-6 w-6 rounded border-2 bg-gray-700 p-1 dark:bg-gray-800 ${copied
             ? 'border-green-400 focus:border-green-400 focus:outline-none'
             : 'border-gray-300'
             }`}
@@ -63,7 +69,7 @@ const CodeBlock = (props: any) => {
         </button>
       )}
 
-      <pre>{props.children}</pre>
+      <pre className='code-highlight not-prose'>{props.children}</pre>
     </div>
   )
 }

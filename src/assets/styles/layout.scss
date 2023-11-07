@@ -1,25 +1,15 @@
+@import 'mixin';
 .blog-container {
   max-width: 100%;
   width: 100%;
-  @apply px-2;
+  @include respond-above(xl) {
+    max-width: 992px;
+  }
 }
 .sidebar {
   width: 100%;
-}
-
-@media screen and (min-width: 1280px) {
-  .blog-container {
-    max-width: 992px;
-  }
-  .sidebar {
+  @include respond-above(xl){
     width: 200px;
   }
 }
-// @media screen and (min-width: 1472px) {
-//   .blog-container {
-//     max-width: 1376px;
-//   }
-//   .sidebar {
-//     width: 300px;
-//   }
-// }
+
