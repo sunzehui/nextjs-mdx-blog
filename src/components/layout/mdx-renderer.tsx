@@ -5,20 +5,13 @@ import { Image } from '@/components/markdown/Image'
 import { Link } from '@/components/markdown/Link'
 import CodeBlock from "@/components/markdown/CodeBlock";
 import { useMemo } from "react";
+import Code from '@/components/markdown/Code'
 
 export const mdxComponents: MDXContentProps['components'] = {
   Button,
   a: Link,
-  code(props){
-    if(props.className?.startsWith('language-')){
-      return props.children
-    }
-    return <code className="highlight-words">
-      {props.children}
-    </code>
-  },
+  code:Code,
   pre: CodeBlock,
-  
 }
 const DEFAULT_LAYOUT = 'PostLayout'
 interface MDXLayoutRendererProps {
