@@ -11,8 +11,8 @@ import { Card } from '@/components/layout';
 import TableOfContent from '@/components/ui/table-of-content';
 import { ParsedUrlQuery } from 'querystring';
 import RightSide from '@/components/layout/right-side';
-import Footer from '@/app/(no-post)/footer';
-import Header from '@/app/(no-post)/header';
+import Footer from '@/components/layout/footer';
+import Header from '@/components/layout/header';
 
 interface PostNavProps {
   prevPost: PostMeta | null
@@ -23,20 +23,18 @@ interface PostHeaderProps {
 }
 const PostHeader: FC<PostHeaderProps> = ({ post }) => {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="w-full text-zinc-800 dark:text-zinc-200 text-2xl font-normal leading-relaxed">
+    <div>
+      <h1 className="w-full text-zinc-800 dark:text-zinc-200 ">
         {post.title}
-      </div>
+      </h1>
       <div className="text-neutral-500 text-md font-light ">
         发布日期：{dateFormat(post.date)}
         <GapPoint />
         {durationFormat(post.readingTime.time)}
         <GapPoint />
         {post.readingTime.words}字
-
       </div>
-
-      <p>
+      <p className='mt-5'>
         {post.desc}
       </p>
       <span className='h-px bg-slate-300'></span>

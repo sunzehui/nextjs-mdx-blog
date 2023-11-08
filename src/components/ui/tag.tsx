@@ -9,13 +9,11 @@ interface TagProps {
 }
 export const Tag = ({ isMore, val }: TagProps) => {
   return (
-    <>
       <Link
         href={isMore ? '/tags' : `/tags/${val}`}
-        className="ml-2 px-1  rounded-[15px] hover-underline">
-        <span className="text-neutral-500 text-sm font-light leading-relaxed">#{isMore ? '...' : val}</span>
+        className="ml-2 px-1 hover-underline text-neutral-500 text-sm font-light leading-relaxed">
+        #{isMore ? '...' : val}
       </Link>
-    </>
   )
 }
 

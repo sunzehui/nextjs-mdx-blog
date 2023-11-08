@@ -51,10 +51,8 @@ interface PageParams extends ParsedUrlQuery {
 export default async function Page({ params }: { params: PageParams }) {
   const { tag } = params
 
-  const posts = await getList({ tag }).catch(e => {
-    if (e.message === 'Not Found') return notFound()
-    throw e
-  })
+  const posts = await getList({ tag })
+  if(!posts.length) return notFound()
 
   return (
     <>

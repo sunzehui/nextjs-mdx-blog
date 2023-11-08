@@ -14,13 +14,11 @@ export const Post = ({ ...props }: PostProps) => {
   return (
     <div className="mb-3 flex flex-col gap-1">
       <Link href={`/post/${id}`}>
-        <div className="cursor-pointer text-zinc-800 dark:text-zinc-200 text-2xl font-normal leading-10 ">
-          <h2 className="inline-block hover-underline">
-            {title}
-          </h2>
-        </div>
+        <h1 className="cursor-pointer text-zinc-800 dark:text-zinc-200 leading-10">
+          {title}
+        </h1>
       </Link>
-      <div className="w-full max-h-[90px] justify-start line-clamp-3 gap-2.5 text-zinc-800 text-md font-normal leading-[30px]">
+      <div className="w-full max-h-[90px] justify-start line-clamp-3 gap-2.5 text-zinc-800 dark:text-base-content text-md font-normal leading-[30px]">
         {content}
       </div>
       <div className="flex flex-wrap">

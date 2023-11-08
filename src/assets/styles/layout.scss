@@ -2,13 +2,13 @@
 .blog-container {
   max-width: 100%;
   width: 100%;
-  @include respond-above(xl) {
+  @include respond-above(lg) {
     max-width: 992px;
   }
 }
 .sidebar {
   width: 100%;
-  @include respond-above(xl){
+  @include respond-above(lg){
     width: 200px;
   }
 }

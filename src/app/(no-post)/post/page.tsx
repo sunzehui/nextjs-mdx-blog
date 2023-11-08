@@ -88,7 +88,7 @@ export default async function PagePostList(props: PageProps) {
   if (pagination.postCount === 0) return <NoArticlesMessage />
 
   return (
-    <Card className="">
+    <Card>
       <PostList posts={posts} />
       <Pagination nextPage={nextPage} pagination={pagination} />
     </Card>

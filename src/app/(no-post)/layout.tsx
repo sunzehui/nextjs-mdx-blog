@@ -1,7 +1,7 @@
 import '@/assets/styles/global.scss'
 import RightSide from '@/components/layout/right-side'
-import Footer from './footer'
-import Header from './header'
+import Footer from '../../components/layout/footer'
+import Header from '../../components/layout/header'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { PropsWithChildren } from 'react'
 

@@ -19,9 +19,6 @@ interface GetListParams {
 export const getList = async ({ tag }: GetListParams = {}) => {
   if (tag) {
     const postList = await getListByTag(tag)
-    if (!postList.length) {
-      throw new Error('Not Found')
-    }
     return postList
   }
 

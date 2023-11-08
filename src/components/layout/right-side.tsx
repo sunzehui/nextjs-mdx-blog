@@ -50,11 +50,11 @@ const RightSide = async (props: PropsWithChildren) => {
   const archives = await getArchives()
 
   return (
-    <div className="flex flex-col gap-5 sticky top-5 h-full min-w-[260px] shrink-0">
+    <aside className="flex flex-col gap-5 sticky top-5 h-full w-[260px] shrink-0">
       <ArchiveCard archives={archives} />
       <TagCard tags={tags} />
       {props.children}
-    </div>
+    </aside>
   )
 }
 

@@ -1,3 +1,4 @@
+
 .markdown-body {
   @apply text-base break-words leading-8 prose dark:prose-invert max-w-none;
 
@@ -8,46 +9,6 @@
       @apply text-gray-500/50 font-normal;
       content: ' #';
     }
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold my-4 leading-9;
-  }
-  h1 {
-    // @apply text-4xl;
-    font-size: var(--step-5);
-  }
-  h2 {
-    // @apply text-2xl;
-    font-size: var(--step-4);
-  }
-  h3 {
-    // @apply text-xl;
-    font-size: var(--step-3);
-  }
-  h4 {
-    //  @apply text-lg;
-    font-size: var(--step-2);
-  }
-  h5 {
-    // @apply text-sm;
-    font-size: var(--step-1);
-  }
-  h6 {
-    //  @apply text-xs;
-    font-size: var(--step-0);
-  }
-  h1 + *,
-  h2 + *,
-  h3 + *,
-  h4 + *,
-  h5 + *,
-  h6 + * {
-    @apply mt-0;
   }
 
   // Paragraph
